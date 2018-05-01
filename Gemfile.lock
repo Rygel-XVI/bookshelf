@@ -52,7 +52,7 @@ GEM
       msgpack (~> 1.0)
     builder (3.2.3)
     byebug (10.0.2)
-    capybara (3.0.2)
+    capybara (3.0.3)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
@@ -73,11 +73,13 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     crass (1.0.4)
+    daemons (1.2.6)
     dotenv (2.4.0)
     dotenv-rails (2.4.0)
       dotenv (= 2.4.0)
       railties (>= 3.2, < 6.0)
     erubi (1.7.1)
+    eventmachine (1.2.6)
     execjs (2.7.0)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
@@ -115,6 +117,7 @@ GEM
     nio4r (2.3.0)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
+    oauth (0.5.4)
     oauth2 (1.4.0)
       faraday (>= 0.8, < 0.13)
       jwt (~> 1.0)
@@ -124,13 +127,20 @@ GEM
     omniauth (1.8.1)
       hashie (>= 3.4.6, < 3.6.0)
       rack (>= 1.6.2, < 3)
-    omniauth-facebook (5.0.0)
-      omniauth-oauth2 (~> 1.2)
+    omniauth-google-oauth2 (0.5.3)
+      jwt (>= 1.5)
+      omniauth (>= 1.1.1)
+      omniauth-oauth2 (>= 1.5)
+    omniauth-oauth (1.1.0)
+      oauth
+      omniauth (~> 1.0)
     omniauth-oauth2 (1.5.0)
       oauth2 (~> 1.1)
       omniauth (~> 1.2)
+    omniauth-tumblr (1.2)
+      multi_json
+      omniauth-oauth (~> 1.0)
     public_suffix (3.0.2)
-    puma (3.11.4)
     rack (2.0.5)
     rack-test (1.0.0)
       rack (>= 1.0, < 3)
@@ -191,6 +201,10 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     sqlite3 (1.3.13)
+    thin (1.7.2)
+      daemons (~> 1.0, >= 1.0.9)
+      eventmachine (~> 1.0, >= 1.0.4)
+      rack (>= 1, < 3)
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
@@ -201,7 +215,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.1.10)
       execjs (>= 0.3.0, < 3)
-    web-console (3.6.1)
+    web-console (3.6.2)
       actionview (>= 5.0)
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
@@ -225,14 +239,15 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   omniauth
-  omniauth-facebook
-  puma (~> 3.11)
+  omniauth-google-oauth2
+  omniauth-tumblr
   rails (~> 5.2.0)
   sass-rails (~> 5.0)
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3
+  thin
   turbolinks (~> 5)
   tzinfo-data
   uglifier (>= 1.3.0)
