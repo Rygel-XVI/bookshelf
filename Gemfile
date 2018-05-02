@@ -8,7 +8,7 @@ gem 'rails', '~> 5.2.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
-# gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -41,7 +41,7 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-tumblr'
 gem 'dotenv-rails'
-gem 'thin'
+# gem 'thin'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
