@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'welcome#home'
-  # get '/auth/google_oauth2/callback' => 'sessions#create'
-  # get '/auth/tumblr/callback' => 'sessions#create'
+  post '/oauth/request_token' => 'sessions#new'
   get '/auth/:provider/callback' => 'sessions#create'
 
   # get '/auth/google_oath2/callback' => 'sessions#create'

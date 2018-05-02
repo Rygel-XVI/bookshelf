@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/arunagw/omniauth-twitter.git
+  revision: 3e9ca3593d8496bf6b59754da9ac6bcd63ed20ec
+  specs:
+    omniauth-twitter (1.4.0)
+      omniauth-oauth (~> 1.1)
+      rack
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -236,6 +244,7 @@ DEPENDENCIES
   omniauth
   omniauth-google-oauth2
   omniauth-tumblr
+  omniauth-twitter!
   puma (~> 3.11)
   rails (~> 5.2.0)
   sass-rails (~> 5.0)

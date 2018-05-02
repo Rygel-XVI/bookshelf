@@ -40,6 +40,10 @@ gem 'omniauth'
 # gem 'omniauth-google'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-tumblr'
+# gem 'omniauth-twitter'
+gem 'omniauth-twitter', :github => 'arunagw/omniauth-twitter'
+
+
 gem 'dotenv-rails'
 # gem 'thin'
 
