@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  skip_before_action :verify_authenticity_token
 
   def new
     render '/sessions/login'
@@ -9,8 +10,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-    raise params.inspect
     @user = User.find_or_create_from_auth_hash(auth_hash)
+    byebug
     self.current_user = @user
     redirect_to root_path
   end
@@ -18,7 +19,7 @@ class SessionsController < ApplicationController
   private
 
   def auth_hash
-    raise params.inspect
+    # raise params.inspect
     request.env['omniauth.auth']
   end
 
