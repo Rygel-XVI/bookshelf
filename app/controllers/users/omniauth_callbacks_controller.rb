@@ -6,7 +6,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def tumblr
     @user = User.from_omniauth(request.env["omniauth.auth"])
-    sign_in_and_redirect @user 
+    byebug
+    sign_in_and_redirect @user
   end
 
   def google_oauth2
