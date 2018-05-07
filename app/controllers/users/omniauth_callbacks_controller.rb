@@ -4,12 +4,13 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     raise params.inspect
   end
 
-  def tumblr
-    byebug
-    @user = User.from_omniauth(request.env["omniauth.auth"])
-    byebug
-    sign_in_and_redirect @user
-  end
+##not using as no email provided in uid complicates validation
+  # def tumblr
+  #   byebug
+  #   @user = User.from_omniauth(request.env["omniauth.auth"])
+  #   byebug
+  #   sign_in_and_redirect @user
+  # end
 
   def google_oauth2
     @user = User.from_omniauth(request.env["omniauth.auth"])
