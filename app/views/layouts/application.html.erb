@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Bookshelf</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<h1>Bookshelf</h1>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<navbar>
+  <% if logged_in? %>
+  <ul>
+    <%= link_to "Home", users_path(User.find(session[:user_id])) %>
+  </ul>
+  <% else %>
+  <ul>
+    <li><%= link_to "Sign In", new_user_session_path %></li>
+    <li><%= link_to "Sign Up", new_user_registration_path %></li>
+  </ul>
+  <% end %>
+</navbar>
 
-  <body>
-    <%= yield %>
-  </body>
-</html>
+  <%= yield %>
