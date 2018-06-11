@@ -10,9 +10,10 @@ class SessionsController < ApplicationController
   end
 
   def create
+    binding.pry
     @user = User.find_or_create_from_auth_hash(auth_hash)
-    byebug
-    self.current_user = @user
+    # self.current_user = @user
+    binding.pry
     redirect_to root_path
   end
 

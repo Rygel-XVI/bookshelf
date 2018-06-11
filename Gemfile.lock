@@ -72,6 +72,7 @@ GEM
     chromedriver-helper (1.2.0)
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
+    coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -146,6 +147,9 @@ GEM
     omniauth-tumblr (1.2)
       multi_json
       omniauth-oauth (~> 1.0)
+    pry (0.11.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
     public_suffix (3.0.2)
     puma (3.11.4)
     rack (2.0.5)
@@ -245,6 +249,7 @@ DEPENDENCIES
   omniauth-google-oauth2
   omniauth-tumblr
   omniauth-twitter!
+  pry
   puma (~> 3.11)
   rails (~> 5.2.0)
   sass-rails (~> 5.0)
