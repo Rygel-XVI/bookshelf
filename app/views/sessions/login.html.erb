@@ -2,4 +2,10 @@
 
 <%= link_to 'Log in', sessions_login_path %><br>
 
+<%= form_for @user do |f| %>
+  <%= f.text_field :name %>
+  <%= f.text_field :password %>
+  <%= f.submit %>
+<% end %>
+
 <%= link_to "Sign in with Google Mail", '/auth/google_oauth2' %>
