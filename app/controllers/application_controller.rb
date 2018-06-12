@@ -5,11 +5,14 @@ class ApplicationController < ActionController::Base
     session[:user_id]
   end
 
-  def login
+  def login(user)
+    binding.pry
+    session[:user_id] = user.id
   end
 
   def logged_in?
-  redirect_to login_path unless !!current_user
-end
+    # redirect_to login_path unless !!current_user
+    !!current_user
+  end
 
 end

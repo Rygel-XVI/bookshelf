@@ -1,11 +1,15 @@
 <h1>Login</h1>
 
-<%= link_to 'Log in', sessions_login_path %><br>
+<br>
 
 <%= form_for @user do |f| %>
-  <%= f.text_field :name %>
-  <%= f.text_field :password %>
-  <%= f.submit %>
+  Name: <%= f.text_field :name %> <br>
+  Password: <%= f.text_field :password %> <br>
+  <%= f.submit "Login" %> <br><br>
 <% end %>
 
-<%= link_to "Sign in with Google Mail", '/auth/google_oauth2' %>
+<%= button_to "Sign in with Google Mail", '/auth/google_oauth2' %>
+
+<br>
+
+<%= button_to "Create New User", new_user_path %>

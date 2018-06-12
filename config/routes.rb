@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
+  get '/logout' => 'session#destroy'
   get '/sessions/login' => 'sessions#new'
   get '/auth/failure' => 'sessions#fail'
   resources :users
