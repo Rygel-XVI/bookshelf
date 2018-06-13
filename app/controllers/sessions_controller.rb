@@ -11,24 +11,15 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_or_create_from_auth_hash(auth_hash)
-    binding.pry
+    @user = User.find_or_create_by(uid: auth_hash[:uid]) do |u|
+      u.email = auth_hash[:info][:email]
+      u.name = auth_hash[:info][:name]
+      u.password = SecureRandom.base64(15)
+      u.uid = auth_hash[:uid]
+    end
     login(@user)
     redirect_to user_path(@user)
   end
-
-  # something closer to this
-  # def create
-  #   @user = User.find_or_create_by(uid: auth['uid']) do |u|
-  #     u.name = auth['info']['name']
-  #     u.email = auth['info']['email']
-  #     u.image = auth['info']['image']
-  #   end
-  #
-  #   session[:user_id] = @user.id
-  #
-  #   render 'welcome/home'
-  # end
 
   def destroy
     session.clear
@@ -37,12 +28,7 @@ class SessionsController < ApplicationController
 
   private
 
-  # def login(user)
-  #   binding.pry
-  # end
-
   def auth_hash
-    # raise params.inspect
     request.env['omniauth.auth']
   end
 

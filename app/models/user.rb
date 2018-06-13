@@ -5,13 +5,5 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  def self.find_or_create_from_auth_hash(auth_hash)
-    u = User.new
-    u.email = auth_hash[:info][:email]
-    u.name = auth_hash[:info][:name]
-    u.password = SecureRandom.base64(15)
-    u.save
-    u
-  end
 
 end
