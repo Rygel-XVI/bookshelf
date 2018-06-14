@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
   get '/sessions/login' => 'sessions#new'
   get '/auth/failure' => 'sessions#fail'
-  resources :users
+
+  resources :users, :books, :authors
 
 end
