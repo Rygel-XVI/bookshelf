@@ -1,7 +1,7 @@
-class AdminController < ApplicationController
+class Admin::UsersController < ApplicationController
   before_action :admin_required
 
-  def users
+  def index
     if current_user.admin
       @user = current_user
       @users = User.all
@@ -17,16 +17,13 @@ class AdminController < ApplicationController
     @self = current_user
   end
 
-  def edit_user
+  def edit
+    @user = User.find(params[:id])
+    @self = current_user
+  end
+
+  def update
     binding.pry
-  end
-
-  def edit_book
-
-  end
-
-  def edit_author
-
   end
 
   private

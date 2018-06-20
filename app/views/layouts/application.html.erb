@@ -11,13 +11,26 @@
 
   <body>
 
-      <% if logged_in? %>
+      <% if logged_in? && is_admin? %>
+
+        <nav>
+          <%= link_to "Home", user_path(current_user) %>
+          <%= link_to "Profile", edit_user_path(current_user) %>
+          <%= link_to "User List", admin_users_path(current_user) %>
+          <%= link_to "Book List", books_path %>
+          <%= link_to "Author List", authors_path %>
+          <%= link_to "Logout", logout_path %>
+        </nav><br>
+
+      <% elsif logged_in? %>
 
         <h1>Your Bookshelf</h1>
 
           <nav>
           <%= link_to "Home", user_path(current_user) %>
           <%= link_to "Profile", edit_user_path(current_user) %>
+          <%= link_to "Book List", books_path %>
+          <%= link_to "Author List", authors_path %>
           <%= link_to "Logout", logout_path %>
         </nav><br>
 

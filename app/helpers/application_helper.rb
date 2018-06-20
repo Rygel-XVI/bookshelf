@@ -4,4 +4,8 @@ module ApplicationHelper
     !!session[:user_id]
   end
 
+  def is_admin?
+    current_user.admin
+  end
+
 end
