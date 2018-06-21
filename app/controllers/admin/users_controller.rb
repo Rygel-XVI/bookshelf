@@ -12,11 +12,6 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-  def show_user
-    @user = User.find(params[:id])
-    @self = current_user
-  end
-
   def edit
     @user = User.find(params[:id])
     @self = current_user
@@ -24,6 +19,8 @@ class Admin::UsersController < ApplicationController
 
   def update
     binding.pry
+    @user = User.find(params[:id])
+    @user.update(user_params(params[:user]))
   end
 
   private

@@ -1,9 +1,8 @@
 <h2>Edit <%= @user.name %></h2>
 
-<h4><%= @user.name %> </h4>
 <h4><%= @user.email %> </h4>
 
-<%= form_for @user do |f| %>
+<%= form_for @user, :url => admin_user_path(@user) do |f| %>
   Change Name: <%= f.text_field :name %><br>
   Change Email: <%= f.text_field :email %><br>
   Change Password: <%= f.text_field :password %><br>

@@ -12,13 +12,17 @@ class AdminController < ApplicationController
     end
   end
 
-  def show_user
+  def edit
+    binding.pry
     @user = User.find(params[:id])
     @self = current_user
   end
 
   def edit_user
     binding.pry
+    @user = User.find(params[:id])
+    @user.update(user_params(params[:user]))
+
   end
 
   def edit_book
