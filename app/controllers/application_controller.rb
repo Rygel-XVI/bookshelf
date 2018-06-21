@@ -18,4 +18,10 @@ class ApplicationController < ActionController::Base
     logged_in? && current_user.admin
   end
 
+  private
+
+  def user_params(args)
+    params.require(:user).permit(:name, :password, :password_confirmation)
+  end
+
 end
