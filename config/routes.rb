@@ -10,10 +10,6 @@ Rails.application.routes.draw do
   get '/sessions/login' => 'sessions#new'
   get '/auth/failure' => 'sessions#fail'
 
-  # get '/admin/users' => 'admin#users'
-  # get '/admin/users/:id' => 'admin#user'
-  # get '/admin/users/:id/edit' => 'admin#user_edit'
-
   resources :users, except: [:index]
 
   resources :books, :authors, only: [:index, :show]
@@ -24,9 +20,4 @@ Rails.application.routes.draw do
     resources :authors, except: [:show]
   end
 
-  # resources :admin do
-  #   # resources :users, only: [:index]
-  #   resources :books, only: [:new, :update, :delete]
-  #   resources :authors, only: [:new, :update, :delete]
-  # end
 end
