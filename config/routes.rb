@@ -16,10 +16,12 @@ Rails.application.routes.draw do
 
   resources :users, except: [:index]
 
-  resources :books, :authors, except: [:new, :update, :delete]
+  resources :books, :authors, only: [:index, :show]
 
   namespace :admin do
     resources :users, only: [:index, :edit, :update]
+    resources :books, except: [:show]
+    resources :authors, except: [:show]
   end
 
   # resources :admin do
