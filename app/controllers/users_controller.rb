@@ -25,13 +25,18 @@ class UsersController < ApplicationController
 #combine session#create with this at some point
   def create
     if User.find_by(name: params[:user][:name])
-      @user = User.find_by(name: params[:user][:name])
+      # @user = User.find_by(name: params[:user][:name])
       ##flash error message user already exists
+      @user = User.new
+      render new_user_path
     else
-      @user = User.create(user_params(params[:user]))
+      @user = User.new(user_params(params[:user]))
+      if @user.save
+        render login(@user)
+        redirect_to user_path(@user)
+      end
+      render new_user_path
     end
-    login(@user)
-    redirect_to user_path(@user)
   end
 
   def edit

@@ -7,4 +7,10 @@ class User < ApplicationRecord
   has_many :user_books
   has_many :books, through: :user_books
 
+  validates :name, presence: true
+  validates :name, uniqueness: true
+  # validates :password, presence: true
+
+  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
+
 end
