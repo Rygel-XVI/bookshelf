@@ -8,6 +8,7 @@ class Admin::UsersController < ApplicationController
       @books = Book.all
       @author = Author.all
     else
+      # flash msg need admin permissions
       redirect_to user_path(current_user)
     end
   end

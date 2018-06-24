@@ -14,6 +14,7 @@ class SessionsController < ApplicationController
     if params[:user]
       user = User.find_by(name: params[:user][:name])
       @user = user.try(:authenticate, params[:user][:password])
+      # flash bad login
       return redirect_to root_path unless @user
     else
       @user = User.find_or_create_by(uid: auth_hash[:uid]) do |u|
