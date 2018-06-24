@@ -1,6 +1,15 @@
 class User < ApplicationRecord
+  # before_action :require_login
+  # skip_before_action :require_login, only: [:index]
+  require "securerandom"
+  has_secure_password
 
-  def self.find_or_create_from_auth_hash(auth_hash)
-    byebug
-  end
+  has_many :user_books
+  has_many :books, through: :user_books
+
+  validates :name, presence: true
+  validates :name, uniqueness: true
+
+  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }, allow_blank: true
+
 end

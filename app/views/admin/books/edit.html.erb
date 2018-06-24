@@ -1,0 +1,10 @@
+
+<h2>Edit Book</h2>
+
+<%= form_for @book do |f| %>
+  title: <%= f.text_field :title%><br>
+  description: <%= f.text_area :description %><br>
+  word_count: <%= f.number_field :word_count %><br>
+  status: <%= f.text_field :status %><br>
+  <%= f.submit %><br>
+<% end %>
