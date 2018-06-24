@@ -11,13 +11,19 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_or_create_by(uid: auth_hash[:uid]) do |u|
-      u.email = auth_hash[:info][:email]
-      u.name = auth_hash[:info][:name]
-      u.password = SecureRandom.base64(15)
-      u.uid = auth_hash[:uid]
+    if params[:user]
+      user = User.find_by(name: params[:user][:name])
+      @user = user.try(:authenticate, params[:user][:password])
+      return redirect_to root_path unless @user
+    else
+      @user = User.find_or_create_by(uid: auth_hash[:uid]) do |u|
+        u.email = auth_hash[:info][:email]
+        u.name = auth_hash[:info][:name]
+        u.password = SecureRandom.base64(15)
+        u.uid = auth_hash[:uid]
+      end
     end
-    login(@user)
+    log_in
     redirect_to user_path(@user)
   end
 
@@ -27,6 +33,10 @@ class SessionsController < ApplicationController
   end
 
   private
+
+  def log_in
+    session[:user_id] = @user.id
+  end
 
   def auth_hash
     request.env['omniauth.auth']

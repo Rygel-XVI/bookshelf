@@ -2,7 +2,7 @@
 
 <br>
 
-<%= form_for @user do |f| %>
+<%= form_for @user, :url => login_path do |f| %>
   Name: <%= f.text_field :name %> <br>
   Password: <%= f.text_field :password %> <br>
   <%= f.submit "Login" %> <br><br>

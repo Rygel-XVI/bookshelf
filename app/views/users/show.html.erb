@@ -4,7 +4,17 @@
 <br>
 
 <ul>
-<% @books.each do |book| %>
-  <li><%= link_to "#{book.title}", book_path(book) %> by: <%= link_to "#{book.author.name}", author_path(book.author) %></li>
+  <% if @user.admin %>
+
+    <% @books.each do |book| %>
+      <li><%= link_to "#{book.title}", edit_admin_book_path(book) %> by: <%= link_to "#{book.author.name}", edit_admin_author_path(book.author) %></li>
+    <% end %>
+
+  <% else %>
+
+    <% @books.each do |book| %>
+      <li><%= link_to "#{book.title}", book_path(book) %> by: <%= link_to "#{book.author.name}", author_path(book.author) %></li>
+    <% end %>
+
 <% end %>
 </ul>

@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   def logged_in?
     # redirect_to login_path unless !!current_user
-    !!current_user
+    redirect_to root_path unless !!current_user
   end
 
   def is_admin?
@@ -22,6 +22,10 @@ class ApplicationController < ActionController::Base
 
   def user_params(args)
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
+  end
+
+  def admin_required
+   return head(:forbidden) unless current_user.admin
   end
 
 end
