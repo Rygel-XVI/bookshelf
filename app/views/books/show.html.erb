@@ -4,3 +4,8 @@
 <h3><%= @book.description %></h3>
 <h3>Word Count: <%= @book.word_count %></h3>
 <h3>Library Status: <%= @book.status %></h3>
+
+<% if is_admin? %>
+  <%= link_to "Edit #{@book.title}", edit_admin_book_path(@book) %><br>
+  <%= link_to "Edit #{@book.author.name}", edit_admin_author_path(@book.author) %>
+<% end %>

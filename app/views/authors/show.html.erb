@@ -1,9 +1,27 @@
 <h1><%= @author.name %></h1>
+<%= link_to "Edit this author", edit_admin_author_path(@author) %>
 
-<ul>
-<% @books.each do |book| %>
-  <li>
-    <%= link_to "#{book.title}", book_path(book) %>
-  </li>
+<br><br>
+
+<% if is_admin? %>
+
+  <ul>
+  <% @books.each do |book| %>
+    <li>
+      <p><%= link_to "#{book.title}", book_path(book) %></p>
+      <p><%= link_to "Edit #{book.title}", edit_admin_book_path(book) %></p>
+    </li>
+  <% end %>
+  </ul>
+
+<% else %>
+
+  <ul>
+  <% @books.each do |book| %>
+    <li>
+      <p><%= link_to "#{book.title}", book_path(book) %></p>
+    </li>
+  <% end %>
+  </ul>
+
 <% end %>
-</ul>
