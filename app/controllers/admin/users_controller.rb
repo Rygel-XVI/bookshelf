@@ -8,6 +8,7 @@ class Admin::UsersController < ApplicationController
       @books = Book.all
       @author = Author.all
     else
+      # flash msg need admin permissions
       redirect_to user_path(current_user)
     end
   end
@@ -18,7 +19,6 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
-    binding.pry
     @user = User.find(params[:id])
     @user.update(user_params(params[:user]))
   end

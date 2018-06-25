@@ -1,0 +1,17 @@
+<h1>Create New Book</h1>
+
+<%= form_for @book, :url => books_path do |f| %>
+
+  title: <%= f.text_field :title%><br>
+  description: <%= f.text_area :description %><br>
+  word_count: <%= f.number_field :word_count %><br>
+  status: <%= f.text_field :status %><br><br>
+
+  <%= f.collection_radio_buttons :author_id, Author.all, :id, :name %><br><br>
+    <%= f.fields_for :author do |a| %>
+    Create New Author: <%= a.text_field :name %><br><br>
+  <% end %>
+
+  <%= f.submit %>
+
+<% end %>
