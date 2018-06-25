@@ -1,0 +1,9 @@
+<h1>Create New Author</h1>
+
+<%= form_for @author, :url => authors_path do |f| %>
+
+  name: <%= f.text_field :name%><br>
+
+  <%= f.submit %>
+
+<% end %>
