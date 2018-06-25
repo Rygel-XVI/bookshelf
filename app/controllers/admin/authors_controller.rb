@@ -1,6 +1,19 @@
 class Admin::AuthorsController < ApplicationController
   before_action :admin_required
 
+  def new
+    @author = Author.new
+  end
+
+  def create
+    @author = Author.new(author_params)
+    if @author.save
+      redirect_to authors_path(@author)
+    else
+      render new_admin_author_path
+    end
+  end
+
   def edit
     @author = Author.find(params[:id])
   end
@@ -14,18 +27,6 @@ class Admin::AuthorsController < ApplicationController
     end
   end
 
-  def new
-    @author = Author.new
-  end
-
-  def create
-    @author = Author.new(author_params)
-    if @author.save
-      redirect_to authors_path(@author)
-    else
-      render new_admin_author_path
-    end
-  end
 
   private
 

@@ -9,11 +9,11 @@ class Admin::BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     if @book.save
-      # add success msg
-      redirect_to admin_books_path
+      flash[:msg] = "#{@book.title} Created"
+      redirect_to book_path(@book)
     else
-      # add error msg
-      render new_admin_book_path(@book)
+      flash[:msg] = "Error #{@book.title} not created"
+      render new_admin_book_path
     end
   end
 
@@ -23,8 +23,11 @@ class Admin::BooksController < ApplicationController
 
   def update
     @book = Book.find(params[:id])
-    @book.update(book_params)
-    redirect_to book_path(@book)
+    if @book.update(book_params)
+      redirect_to book_path(@book)
+    else
+      render edit_admin_book_path
+    end
   end
 
   private
