@@ -1,7 +1,8 @@
-
 <h2>Edit Author</h2>
 
+<%= render partial: '/layouts/form_errors', locals: {model: @author} %>
+
 <%= form_for @author, url: admin_author_path(@author) do |f| %>
-  name: <%= f.text_field :name%><br>
-  <%= f.submit %><br>
+  <%= render partial: 'authors', locals: {f: f} %>
+  <%= f.submit %>
 <% end %>

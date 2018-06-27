@@ -1,6 +1,8 @@
 <h1>Create New Author</h1>
 
+<%= render partial: '/layouts/form_errors', locals: {model: @author} %>
+
 <%= form_for @author, :url => admin_authors_path(@author) do |f| %>
-  name: <%= f.text_field :name%><br>
+  <%= render partial: 'authors', locals: {f: f} %>
   <%= f.submit %>
 <% end %>
