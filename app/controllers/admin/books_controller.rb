@@ -12,8 +12,7 @@ class Admin::BooksController < ApplicationController
       flash[:msg] = "#{@book.title} Created"
       redirect_to book_path(@book)
     else
-      flash[:msg] = "Error #{@book.title} not created"
-      render new_admin_book_path
+      render 'new'
     end
   end
 
@@ -24,9 +23,10 @@ class Admin::BooksController < ApplicationController
   def update
     @book = Book.find(params[:id])
     if @book.update(book_params)
+      flash[:msg] = "#{@book.title} Update Successful!"
       redirect_to book_path(@book)
     else
-      render edit_admin_book_path
+      render 'edit'
     end
   end
 

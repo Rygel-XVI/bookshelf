@@ -1,17 +1,20 @@
 <h1>Create New Book</h1>
 
+<%= render partial: '/layouts/form_errors', locals: {model: @book} %>
+
+<p>To create a new book fill out the following fields and either choose an existing author or create a new one via the text field.</p>
+
 <%= form_for @book, :url => admin_books_path do |f| %>
 
-  title: <%= f.text_field :title%><br>
-  description: <%= f.text_area :description %><br>
-  word_count: <%= f.number_field :word_count %><br>
-  status: <%= f.text_field :status %><br><br>
+<%= render partial: 'books', locals: {f: f} %>
+<hr>
 
-  <%= f.collection_radio_buttons :author_id, Author.all, :id, :name %><br><br>
-    <%= f.fields_for :author do |a| %>
-    Create New Author: <%= a.text_field :name %><br><br>
+<p>Create New Author</p>
+
+  <%= f.fields_for :author do |a| %>
+    <%= render partial: 'admin/authors/authors', locals: {f: a} %>
   <% end %>
 
-  <%= f.submit %>
+<%= f.submit %>
 
 <% end %>

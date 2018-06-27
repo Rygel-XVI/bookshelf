@@ -10,7 +10,7 @@ class Admin::AuthorsController < ApplicationController
     if @author.save
       redirect_to authors_path(@author)
     else
-      render new_admin_author_path
+      render 'new'
     end
   end
 
@@ -23,7 +23,7 @@ class Admin::AuthorsController < ApplicationController
     if @author.update(author_params)
       redirect_to authors_path(@author)
     else
-      render edit_admin_author_path
+      render 'edit'
     end
   end
 

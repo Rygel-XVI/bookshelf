@@ -1,11 +1,11 @@
 
 <h2>Edit Book</h2>
 
+<%= render partial: '/layouts/form_errors', locals: {model: @book} %>
+
 <%= form_for @book, url: admin_book_path(@book) do |f| %>
-  title: <%= f.text_field :title%><br>
-  description: <%= f.text_area :description %><br>
-  word_count: <%= f.number_field :word_count %><br>
-  status: <%= f.text_field :status %><br>
-  author: <%= f.collection_radio_buttons :author_id, Author.all, :id, :name %><br>
+
+  <%= render partial: 'books', locals: {f: f} %>
+
   <%= f.submit %><br>
 <% end %>
