@@ -2,6 +2,11 @@
 
 <br>
 
+<%= render partial: '/layouts/form_errors', locals: {model: @user} %>
+
+<br>
+
+
 <%= form_for @user, :url => login_path do |f| %>
   Name: <%= f.text_field :name %> <br>
   Password: <%= f.text_field :password %> <br>

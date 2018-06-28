@@ -1,11 +1,12 @@
 <h1>Edit <%= @user.name %></h1>
 
+<%= render partial: '/layouts/form_errors', locals: {model: @user} %>
+
 <h3><%= @user.email%></h3>
 
 <%= form_for @user do |f| %>
-  Update Name: <%= f.text_field :name %><br>
-  Update Email: <%= f.text_field :email %><br>
-  Update Password: <%= f.text_field :password %><br>
-  Confirm Password: <%= f.text_field :password_confirmation %><br>
+
+  <%= render partial: '/users/users', locals: {f: f} %>
+
   <%= f.submit %><br>
 <% end %>

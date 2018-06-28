@@ -5,7 +5,7 @@ class Book < ApplicationRecord
 
   accepts_nested_attributes_for :author, reject_if: :all_blank
 
-  validates :author, presence: true
-  validates :status, presence: true
+  validates :author, :title, :status, presence: true
+  # validates :status, presence: true
 
 end

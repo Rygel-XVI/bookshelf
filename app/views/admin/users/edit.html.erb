@@ -1,12 +1,12 @@
+<%= render partial: '/layouts/form_errors', locals: {model: @user} %>
+
 <h2>Edit <%= @user.name %></h2>
 
 <h4><%= @user.email %> </h4>
 
 <%= form_for @user, :url => admin_user_path(@user) do |f| %>
-  Change Name: <%= f.text_field :name %><br>
-  Change Email: <%= f.text_field :email %><br>
-  Change Password: <%= f.text_field :password %><br>
-  Confirm Password: <%= f.text_field :password_confirmation %><br>
+
+  <%= render partial: '/users/users', locals: {f: f} %>
 
   Admin: <%= f.check_box :admin %><br>
 
