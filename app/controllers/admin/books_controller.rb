@@ -30,6 +30,13 @@ class Admin::BooksController < ApplicationController
     end
   end
 
+  def destroy
+    book = Book.find(params[:id])
+    book.destroy
+    flash[:msg] = "#{book.title} has been deleted."
+    redirect_to books_path
+  end
+
   private
 
   def book_params

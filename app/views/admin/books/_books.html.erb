@@ -4,9 +4,13 @@
 <%= f.label :description %>
 <%= f.text_area :description %><br>
 <%= f.label :word_count %>
-<%= f.number_field :word_count %><br>
-<%= f.label :status %>
-<%= f.text_field :status %><br><br>
+<%= f.number_field :word_count %><br><br>
+<%= f.label :status %><br>
+<%= f.radio_button :status, "Available" %>Available
+<%= f.radio_button :status, "Checked Out" %>Checked Out
+<%= f.radio_button :status, "Not Available" %>Not Available
+
+
 <hr>
 <%= f.label "Choose Existing Author" %><br>
-<%= f.collection_radio_buttons :author_id, Author.all, :id, :name %><br>
+<%= f.collection_radio_buttons :author_id, Author.all, :id, :name %><br><br>

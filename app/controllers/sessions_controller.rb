@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
     if params[:user]
       user = User.find_by(name: params[:user][:name])
       @user = user.try(:authenticate, params[:user][:password])
-      if !!@user
+      if !@user
         flash[:msg] = "#{params[:user][:name]} not found or bad password."
         return redirect_to root_path
       end

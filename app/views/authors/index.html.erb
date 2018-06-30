@@ -4,11 +4,11 @@
 <% if is_admin? %>
 
   <% @authors.each do |author| %>
+
     <li>
-      <p> Show <%= link_to "#{author.name}", author_path(author) %> or
-          <%= link_to "Delete", admin_author_path(author), action: :destroy, method: :delete, data: {confirm: "Really delete #{author.name}?" } if author.books.empty? %>
-      </p>
-    </li>
+      <%= render partial: 'author_admin', locals: {author: author} %>
+  </li>
+
   <% end %>
 
 <% else %>

@@ -2,7 +2,7 @@ class AuthorsController < ApplicationController
 
   def index
     @authors = Author.all
-    @empty_authors = Author.no_books(@authors)
+    # @empty_authors = Author.no_books(@authors)
   end
 
   def show
