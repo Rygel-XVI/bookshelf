@@ -4,7 +4,6 @@ class Book < ApplicationRecord
   has_many :users, through: :user_books
 
   accepts_nested_attributes_for :author, reject_if: :all_blank
-  accepts_nested_attributes_for :user_books, reject_if: :all_blank
 
   validates :author, :title, :status, presence: true
   validates_inclusion_of :status, in: ["Checked Out", "Available", "Not Available"]
