@@ -5,6 +5,13 @@
 <h3>Word Count: <%= @book.word_count %></h3>
 <h3>Library Status: <%= @book.status %></h3>
 
+<%= form_for @book, action: :update do |f| %>
+  <%= f.hidden_field :status, value: 'Checked Out' %>
+  <%= f.submit "Check Out", data: {confirm: "Really check out #{@book.title}?" } %>
+<% end %>
+
+<br>
+
 <% if is_admin? %>
   <%= link_to "Edit Book", edit_admin_book_path(@book) %><br>
   <%= link_to "Edit Author", edit_admin_author_path(@book.author) %>

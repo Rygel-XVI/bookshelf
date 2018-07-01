@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :users, except: [:index]
 
-  resources :books, :authors, only: [:index, :show]
+  resources :books, :authors, only: [:index, :show, :update]
 
   namespace :admin do
     resources :users, only: [:index, :edit, :update]

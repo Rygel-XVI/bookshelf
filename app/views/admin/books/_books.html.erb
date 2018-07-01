@@ -5,10 +5,10 @@
 <%= f.text_area :description %><br>
 <%= f.label :word_count %>
 <%= f.number_field :word_count %><br><br>
-<%= f.label :status %><br>
-<%= f.radio_button :status, "Available" %>Available
-<%= f.radio_button :status, "Checked Out" %>Checked Out
-<%= f.radio_button :status, "Not Available" %>Not Available
+
+Available <%= f.radio_button :status, "Available" %>
+Checked Out <%= f.radio_button :status, "Checked Out" %>
+Not Available <%= f.radio_button :status, "Not Available" %>
 
 
 <hr>
