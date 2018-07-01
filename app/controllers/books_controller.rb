@@ -6,13 +6,15 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
-    @userbook = UserBook.find_by(book_id: @book.id, user_id: current_user.id)
-    if !!@userbook && @userbook.status != "Checked Out"
-      # @render_button = 'checkout'
-      @button = "Check Out"
-    elsif !!@userbook && @userbook.status == "Checked Out"
-      # @render_button = 'return'
-      @button = "Return Book"
+    if @book.status == "Checked Out" || @book.status == "Available"
+      @userbook = UserBook.find_by(book_id: @book.id, user_id: current_user.id)
+      if !!@userbook && @userbook.status != "Checked Out"
+        # @render_button = 'checkout'
+        @button = "Check Out"
+      elsif !!@userbook && @userbook.status == "Checked Out"
+        # @render_button = 'return'
+        @button = "Return Book"
+      end
     end
   end
 
