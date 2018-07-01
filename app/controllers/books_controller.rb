@@ -1,17 +1,18 @@
 class BooksController < ApplicationController
 
   def index
-    binding.pry
     @books = Book.all
   end
 
   def show
     @book = Book.find(params[:id])
-    @userbook = UserBook.where(book_id: @book.id, user_id: current_user.id)
+    @userbook = UserBook.find_by(book_id: @book.id, user_id: current_user.id)
     if !!@userbook && @userbook.status != "Checked Out"
-      @render_button = 'checkout'
+      # @render_button = 'checkout'
+      @button = "Check Out"
     elsif !!@userbook && @userbook.status == "Checked Out"
-      @render_button = 'return'
+      # @render_button = 'return'
+      @button = "Return Book"
     end
   end
 
