@@ -6,22 +6,33 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
-    if @book.status == "Checked Out" || @book.status == "Available"
-      @userbook = UserBook.find_by(book_id: @book.id, user_id: current_user.id)
-      if !!@userbook && @userbook.status != "Checked Out"
-        @button = "Check Out"
-      elsif !!@userbook && @userbook.status == "Checked Out"
-        @button = "Return Book"
-      end
+    if @book.status != "Not Available"
+     @userbook = UserBook.find_by(book_id: @book.id, user_id: current_user.id) || @userbook = UserBook.new()
+
+      # # binding.pry
+      # if !!@userbook
+
+        if @book.status == "Checked Out" && @userbook.status == "Checked Out"
+            @button = "Return Book"
+            @global_status = "Available"
+            @user_status_choice = true
+            binding.pry
+
+        elsif @book.status == "Available"
+            @button = "Check Out"
+            @global_status = "Checked Out"
+            @user_status_choice = false
+            binding.pry
+
+        end
+
+      # end
     end
+    binding.pry
+
   end
 
   def update
-    # have to add tracking of which user has the book checked out and add the status of the user_book (ie user library). :checked out, :read
-
-    # User.first.user_books.first.status
-
-    binding.pry
     @book = Book.find(params[:id])
     @book.update(book_params)
     redirect_to book_path(@book)
@@ -30,7 +41,12 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:status, :user_books_attributes [:status, :user_id, :book_id, :id])
+    params.require(:book).permit(:status, user_books_attributes: [
+      :status,
+      :user_id,
+      :book_id,
+      :id
+      ])
   end
 
 end

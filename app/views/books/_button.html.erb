@@ -1,13 +1,17 @@
 
-  <%= f.hidden_field :status, value: 'Available' %>
+  <%= f.hidden_field :status, value: global_status %>
 
-  <%= f.fields_for userbook do |u| %>
+  <%= f.fields_for :user_books, userbook do |u| %>
 
     <%= u.hidden_field :user_id, value: user_id %>
 
     <%= u.hidden_field :book_id, value: f.object.id %>
 
-    <%= u.hidden_field :status, value: "Read" %>
+    <% if !!user_status_choice %>
+        <%= render partial: 'userbook_status', locals: {u: u} %>
+    <% else %>
+      <%= u.hidden_field :status, value: "Checked Out" %>
+    <% end %>
 
   <% end %>
 

@@ -7,7 +7,7 @@
 
 <%= form_for @book, action: :update do |f| %>
 
-  <%= render partial: 'button', locals: {:f => f, :userbook => @userbook, :msg => @button } if !!@button %>
+  <%= render partial: 'button', locals: {:f => f, :userbook => @userbook, :msg => @button, :user_status_choice => @user_status_choice, :global_status => @global_status } if !!@button %>
 
 <% end %>
 
