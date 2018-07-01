@@ -1,0 +1,13 @@
+<%= f.hidden_field :status, value: 'Available' %>
+
+<%= f.fields_for @userbook do |u| %>
+
+  <%= u.hidden_field :user_id, value: user_id %>
+
+  <%= u.hidden_field :book_id, value: book.id %>
+
+  <%= u.hidden_field :status, value: "Read" %>
+
+<% end %>
+
+<%= f.submit "Return" %>

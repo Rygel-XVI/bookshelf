@@ -1,6 +1,6 @@
 <%= f.hidden_field :status, value: 'Checked Out' %>
 
-<%= f.fields_for :user_books do |u| %>
+<%= f.fields_for @userbook do |u| %>
 
   <%= u.hidden_field :user_id, value: user_id %>
 
