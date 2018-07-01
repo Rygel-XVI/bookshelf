@@ -1,0 +1,13 @@
+<%= f.hidden_field :status, value: 'Checked Out' %>
+
+<%= f.fields_for :user_books do |u| %>
+
+  <%= u.hidden_field :user_id, value: user_id %>
+
+  <%= u.hidden_field :book_id, value: book.id %>
+
+  <%= u.hidden_field :status, value: "Checked Out" %>
+
+<% end %>
+
+<%= f.submit "Check Out", data: {confirm: "Really check out #{book.title}?" } %>

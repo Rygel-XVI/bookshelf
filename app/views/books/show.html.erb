@@ -6,9 +6,8 @@
 <h3>Library Status: <%= @book.status %></h3>
 
 <%= form_for @book, action: :update do |f| %>
-  <%= f.hidden_field :status, value: 'Checked Out' %>
-  <%= f.submit "Check Out", data: {confirm: "Really check out #{@book.title}?" } %>
-<% end %>
+
+<%= render partial: @render_button, locals: {book: @book, userbook: @userbook} if !!render_button %>
 
 <br>
 
