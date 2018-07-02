@@ -12,5 +12,9 @@ Not Available <%= f.radio_button :status, "Not Available" %>
 
 
 <hr>
-<%= f.label "Choose Existing Author" %><br>
+<%= f.label "Choose Existing Author or Create New One" %><br>
 <%= f.collection_radio_buttons :author_id, Author.all, :id, :name %><br><br>
+<%= f.fields_for :author do |a| %>
+  <%= a.label :name, "Create New Author" %>
+  <%= a.text_field :name%>
+<% end %>

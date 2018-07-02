@@ -19,13 +19,19 @@ class Admin::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params(params[:user]))
+    if current_user.authenticate(params[:old_password]) && @user.update(user_params)
+      flash[:msg] = "#{@user.name} Update Successful"
+      redirect_to user_path(@user)
+    else
+      flash[:msg] = "#{@user.name} Not Updated"
+      render 'edit'
+    end
   end
 
   private
 
-  def admin_required
-   return head(:forbidden) unless current_user.admin
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
   end
 
 end

@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
     User.find(session[:user_id])
   end
 
+
+
   def login(user)
     session[:user_id] = user.id
   end
@@ -17,14 +19,20 @@ class ApplicationController < ActionController::Base
     logged_in? && current_user.admin
   end
 
-  private
-
-  def user_params(args)
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
-  end
-
   def admin_required
    return head(:forbidden) unless current_user.admin
+  end
+
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  def set_book
+    @book = Book.find(params[:id])
+  end
+
+  def set_author
+    @author = Author.find(params[:id])
   end
 
 end

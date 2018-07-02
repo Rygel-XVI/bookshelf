@@ -4,5 +4,9 @@
 <%= f.text_field :email %><br>
 <%= f.label :password %>
 <%= f.password_field :password %><br>
-<%= f.label :password_confirmation %>
+<%= f.label :password_confirmation, "Re-enter Password" %>
 <%= f.password_field :password_confirmation %><br>
+<br>
+
+<%= label_tag :old_password, "Current User Password" %>
+<%= password_field_tag :old_password %><br>

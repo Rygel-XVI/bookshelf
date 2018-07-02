@@ -2,18 +2,10 @@
 
 <%= render partial: '/layouts/form_errors', locals: {model: @book} %>
 
-<p>To create a new book fill out the following fields and either choose an existing author or create a new one via the text field.</p>
-
 <%= form_for @book, :url => admin_books_path do |f| %>
 
 <%= render partial: 'books', locals: {f: f} %>
 <hr>
-
-<p>Create New Author</p>
-
-  <%= f.fields_for :author do |a| %>
-    <%= render partial: 'admin/authors/authors', locals: {f: a} %>
-  <% end %>
 
 <%= f.submit %>
 
