@@ -3,27 +3,25 @@ class Admin::UsersController < ApplicationController
 
   def index
     if current_user.admin
-      @user = current_user
+      set_user
       @users = User.all
       @books = Book.all
       @author = Author.all
-    else
-      redirect_to user_path(current_user)
     end
   end
 
   def edit
-    @user = User.find(params[:id])
-    @self = current_user
+    @target_user = User.find(params[:id])
+    set_user
   end
 
   def update
-    @user = User.find(params[:id])
-    if current_user.authenticate(params[:old_password]) && @user.update(user_params)
-      flash[:msg] = "#{@user.name} Update Successful"
-      redirect_to user_path(@user)
+    @target_user = User.find(params[:id])
+    if current_user.authenticate(params[:old_password]) && @target_user.update(user_params)
+      flash[:msg] = "#{@target_user.name} Update Successful"
+      redirect_to edit_admin_user_path(@target_user)
     else
-      flash[:msg] = "#{@user.name} Not Updated"
+      flash[:msg] = "#{@target_user.name} Not Updated"
       render 'edit'
     end
   end

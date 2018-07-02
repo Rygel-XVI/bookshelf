@@ -1,10 +1,10 @@
-<%= render partial: '/layouts/form_errors', locals: {model: @user} %>
+<br>
 
-<h2>Edit <%= @user.name %></h2>
+<%= render partial: '/layouts/form_errors', locals: {model: @target_user} %>
 
-<h4><%= @user.email %> </h4>
+<br>
 
-<%= form_for @user, :url => admin_user_path(@user) do |f| %>
+<%= form_for @target_user, :url => admin_user_path(@target_user) do |f| %>
 
   <%= render partial: '/users/users', locals: {f: f} %>
 

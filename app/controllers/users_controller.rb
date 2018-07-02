@@ -22,11 +22,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = current_user
+    set_user
   end
 
   def update
-    @user = current_user
+    set_user
     if @user.authenticate(params[:old_password]) && @user.update(user_params)
       flash[:msg] = "#{@user.name} Update Successful"
       redirect_to user_path(@user)
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = current_user
+    set_user
     @books = @user.books
   end
 
