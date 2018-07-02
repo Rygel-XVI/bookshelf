@@ -5,7 +5,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = Book.find(params[:id])
+    set_book
     if @book.status != "Not Available"
      @userbook = UserBook.find_by(book_id: @book.id, user_id: current_user.id) || @userbook = UserBook.new()
 
@@ -25,7 +25,7 @@ class BooksController < ApplicationController
   end
 
   def update
-    @book = Book.find(params[:id])
+    set_book
     @book.update(book_params)
     redirect_to book_path(@book)
   end

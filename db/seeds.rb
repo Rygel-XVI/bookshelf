@@ -15,6 +15,7 @@ u5 = User.create!(name: "admin1", password: "123", admin: true)
 a1 = Author.create!(name: "DeFelice, Cynthia")
 a2 = Author.create!(name: "Colum, Padraic")
 a3 = Author.create!(name: "Wiesel, Elie")
+Author.create!(name: "Placeholder Author")
 
 book1 = Book.create!(title:"Weasel", description: "Alone in the frontier wilderness in the winter of 1839, 11-year-old Nathan runs afoul of the renegade killer known as Weasel and makes a surprising discovery about the concept of revenge. The plot contains racial slurs and violence." , word_count: 23960, status: "Available", author_id: 1)
 

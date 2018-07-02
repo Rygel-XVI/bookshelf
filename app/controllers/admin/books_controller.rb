@@ -17,11 +17,11 @@ class Admin::BooksController < ApplicationController
   end
 
   def edit
-    @book = Book.find(params[:id])
+    set_book
   end
 
   def update
-    @book = Book.find(params[:id])
+    set_book
     if @book.update(book_params)
       flash[:msg] = "#{@book.title} Update Successful!"
       redirect_to book_path(@book)
@@ -31,9 +31,9 @@ class Admin::BooksController < ApplicationController
   end
 
   def destroy
-    book = Book.find(params[:id])
-    book.destroy
-    flash[:msg] = "#{book.title} has been deleted."
+    set_book
+    @book.destroy
+    flash[:msg] = "#{@book.title} has been deleted."
     redirect_to books_path
   end
 
