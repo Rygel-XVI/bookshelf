@@ -15,11 +15,11 @@ class Admin::AuthorsController < ApplicationController
   end
 
   def edit
-    @author = Author.find(params[:id])
+    set_author
   end
 
   def update
-    @author = Author.find(params[:id])
+    set_author
     if @author.update(author_params)
       redirect_to authors_path(@author)
     else
@@ -28,9 +28,9 @@ class Admin::AuthorsController < ApplicationController
   end
 
   def destroy
-    author = Author.find(params[:id])
-    author.destroy
-    flash[:msg] = "#{author.name} has been deleted."
+    set_author
+    @author.destroy
+    flash[:msg] = "#{@author.name} has been deleted."
     redirect_to authors_path
   end
 
