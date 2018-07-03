@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       @user = User.new
       render new_user_path
     else
-      @user = User.new(user_params(params[:user]))
+      @user = User.new(user_params)
       if @user.save
         flash[:msg] = "#{@user.name} Creation Successful!"
         return redirect_to login_path
@@ -42,7 +42,9 @@ class UsersController < ApplicationController
   end
 
   def destroy
-
+    set_user
+    @user.destroy
+    redirect_to logout_path
   end
 
   private

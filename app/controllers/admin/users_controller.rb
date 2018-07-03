@@ -2,12 +2,10 @@ class Admin::UsersController < ApplicationController
   before_action :admin_required
 
   def index
-    if current_user.admin
-      set_user
-      @users = User.all
-      @books = Book.all
-      @author = Author.all
-    end
+    set_user
+    @users = User.all
+    @books = Book.all
+    @author = Author.all
   end
 
   def edit

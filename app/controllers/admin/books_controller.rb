@@ -3,7 +3,7 @@ class Admin::BooksController < ApplicationController
 
   def new
     @book = Book.new
-    @book.build_author
+    # @book.build_author
   end
 
   def create
