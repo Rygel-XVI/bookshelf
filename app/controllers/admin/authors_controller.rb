@@ -1,5 +1,5 @@
 class Admin::AuthorsController < ApplicationController
-  before_action :admin_required
+  before_action :redirect_unless_logged_in, :admin_required
 
   def new
     @author = Author.new

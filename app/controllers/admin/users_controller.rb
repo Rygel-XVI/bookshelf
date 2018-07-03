@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
-  before_action :admin_required
-
+  before_action :redirect_unless_logged_in, :admin_required
+  
   def index
     set_user
     @users = User.all

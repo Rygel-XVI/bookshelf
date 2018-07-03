@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :logged_in?
-  skip_before_action :logged_in?, only: [:new, :create]
+  before_action :redirect_unless_logged_in
+  skip_before_action :redirect_unless_logged_in, only: [:new, :create]
 
   def new
     @user = User.new

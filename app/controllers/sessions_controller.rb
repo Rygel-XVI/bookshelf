@@ -2,8 +2,12 @@ class SessionsController < ApplicationController
   # skip_before_action :verify_authenticity_token
 
   def new
-    @user = User.new
-    render '/sessions/login'
+    if logged_in?
+      redirect_to user_path(current_user)
+    else
+      @user = User.new
+      render '/sessions/login'
+    end
   end
 
   def fail

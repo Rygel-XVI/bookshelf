@@ -1,6 +1,6 @@
 class Admin::BooksController < ApplicationController
-  before_action :admin_required
-
+  before_action :redirect_unless_logged_in, :admin_required
+  
   def new
     @book = Book.new
     # @book.build_author
