@@ -8,5 +8,4 @@
 <%= f.password_field :password_confirmation %><br>
 <br>
 
-<%= label_tag :old_password, user_password_label %>
-<%= password_field_tag :old_password %><br>
+<%= render partial: '/users/current_password', locals: {user_password_label: user_password_label} if logged_in? %>

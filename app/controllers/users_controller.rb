@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     else
       @user = User.new(user_params)
       if @user.save
-        flash[:msg] = "#{@user.name} Creation Successful!"
+        flash[:msg] = "#{@user.name} Creation Successful! Login to continue."
         return redirect_to login_path
       end
       render 'new'

@@ -9,7 +9,7 @@ module UsersHelper
   end
 
   def user_password_label
-    current_user.admin ? "Admin Password" : "Current Password"
+    logged_in? && current_user.admin ? "Admin Password" : "Current Password"
   end
 
 end
