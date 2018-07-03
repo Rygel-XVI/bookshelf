@@ -6,12 +6,12 @@
 
 <%= form_for @target_user, :url => admin_user_path(@target_user) do |f| %>
 
-  <%= render partial: '/users/users', locals: {f: f, submit_msg: @submit_msg} %>
+  <%= render partial: '/users/users', locals: {f: f} %>
 
 <br>
 <hr>
 <br>
-  <%= f.label :admin, "Give #{@target_user.name} admin privileges?" %>
+  <%= f.label :admin, "Give #{user_name(@target_user)} admin privileges?" %>
   <%= f.check_box :admin %><br><br>
 
  <%= f.submit %><br>

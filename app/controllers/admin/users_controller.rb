@@ -11,7 +11,6 @@ class Admin::UsersController < ApplicationController
   def edit
     @target_user = User.find(params[:id])
     set_user
-    @submit_msg = "Admin Password"
   end
 
   def update

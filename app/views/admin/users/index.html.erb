@@ -1,7 +1,7 @@
-<h1>Welcome <%=@user.name%></h1>
+<h1>Welcome <%= user_name(@user) %></h1>
 
 <ul>
 <% @users.each do |user| %>
-  <li><%= link_to "#{user.name}", edit_admin_user_path(user), target_user: user.id  %></li>
+  <li><%= link_to "#{user_name(user)}", edit_admin_user_path(user), target_user: user.id  %></li>
 <% end %>
 </ul>

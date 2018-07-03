@@ -8,4 +8,8 @@ module UsersHelper
     current_user.id
   end
 
+  def user_password_label
+    current_user.admin ? "Admin Password" : "Current Password"
+  end
+
 end

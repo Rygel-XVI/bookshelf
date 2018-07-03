@@ -1,5 +1,5 @@
 
-<h2>Edit <%= "#{@book.title}" %></h2>
+<h2>Edit <%= book_title %></h2>
 
 <%= render partial: '/layouts/form_errors', locals: {model: @book} %>
 
@@ -9,5 +9,7 @@
 
   <%= f.submit %><br>
 <% end %>
+
 <br><hr><br>
-<%= link_to "Delete", admin_book_path(@book), action: :destroy, method: :delete, data: {confirm: "Really delete #{@book.title}?" } %>
+
+<%= link_to "Delete", admin_book_path(@book), action: :destroy, method: :delete, data: {confirm: "Really delete #{book_title}?" } %>

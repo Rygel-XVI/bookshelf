@@ -1,5 +1,5 @@
 <%= render partial: 'author', locals: {author: author} %>
 
-<% if author.books.empty? %>
-  or <%= link_to "Delete", admin_author_path(author), action: :destroy, method: :delete, data: {confirm: "Really delete #{author.name}?" } %>
+<% if no_books?(author) %>
+  or <%= link_to "Delete", admin_author_path(author), action: :destroy, method: :delete, data: {confirm: "Really delete #{author_name(author)}?" } %>
 <% end %>
