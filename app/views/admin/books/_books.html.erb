@@ -6,17 +6,17 @@
 <%= f.label :word_count %>
 <%= f.number_field :word_count %><br><br>
 
-Available <%= f.radio_button :status, "Available" %>
-Checked Out <%= f.radio_button :status, "Checked Out" %>
-Not Available <%= f.radio_button :status, "Not Available" %>
+<%= f.label :status ,"Available" %>
+<%= f.radio_button :status, "Available" %>
+<%= f.label :status, "Checked Out" %>
+<%= f.radio_button :status, "Checked Out" %>
+<%= f.label :status, "Not Available" %>
+<%= f.radio_button :status, "Not Available" %>
 
 
 <hr>
 <%= f.label "Choose Existing Author" %><br>
 
-
-<%= f.fields_for :author do |a| %>
-  <%= a.collection_select :id, Author.all, :name, :name %>
-<% end %>
+<%= f.collection_select :author_id, Author.all, :id, :name %>
 
 <br><br>

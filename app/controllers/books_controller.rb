@@ -7,7 +7,8 @@ class BooksController < ApplicationController
   def show
     set_book
     if @book.status != "Not Available"
-     @userbook = UserBook.find_by(book_id: @book.id, user_id: current_user.id) || @userbook = UserBook.new()
+     @userbook = UserBook.find_by(book_id: @book.id, user_id: current_user.id) || @userbook = UserBook.new
+     ##add default so you can change this to create
 
         if @book.status == "Checked Out" && @userbook.status == "Checked Out"
             @button = "Return Book"

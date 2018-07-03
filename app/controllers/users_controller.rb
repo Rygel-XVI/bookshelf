@@ -23,6 +23,7 @@ class UsersController < ApplicationController
 
   def edit
     set_user
+    @submit_msg = "Current Password"
   end
 
   def update
