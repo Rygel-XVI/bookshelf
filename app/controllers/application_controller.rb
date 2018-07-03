@@ -16,6 +16,15 @@ class ApplicationController < ActionController::Base
     !!session[:user_id]
   end
 
+  # checks if currently logged in user is admin
+  def is_admin?
+    logged_in? && current_user.admin
+  end
+
+
+
+######## Before_action methods ########
+
   # redirects to root view unless logged in
 
   # add if current_user and !!logged_in? session.clear
@@ -23,15 +32,14 @@ class ApplicationController < ActionController::Base
     redirect_to root_path unless logged_in? && !!current_user
   end
 
-  # checks if currently logged in user is admin
-  def is_admin?
-    logged_in? && current_user.admin
-  end
-
   # redirects away unless current user is admin
   def admin_required
    return head(:forbidden) unless current_user.admin
   end
+
+
+
+#########  These methods set variables  #########
 
   # sets @user to logged in user
   def set_user

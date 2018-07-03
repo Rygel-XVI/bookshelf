@@ -1,10 +1,10 @@
 module AuthorsHelper
 
-  def empty(authors)
-    binding.pry
-    authors = Author.all
-    authors.select {|a| a.books.empty}
-  end
+  # def empty(authors)
+  #   binding.pry
+  #   authors = Author.all
+  #   authors.select {|a| a.books.empty}
+  # end
 
   def author_name(author)
     author.name
