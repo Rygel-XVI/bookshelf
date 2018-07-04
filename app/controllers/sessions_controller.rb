@@ -26,8 +26,9 @@ class SessionsController < ApplicationController
       @user = User.find_or_create_by(uid: auth_hash[:uid]) do |u|
         u.email = auth_hash[:info][:email]
         u.name = auth_hash[:info][:name]
-        u.password = SecureRandom.base64(15)
         u.uid = auth_hash[:uid]
+        @called_omniauth = true
+        flash[:msg] = "Please contact admin to access password."
       end
     end
     log_in
@@ -45,8 +46,12 @@ class SessionsController < ApplicationController
     session[:user_id] = @user.id
   end
 
+
+
   def auth_hash
     request.env['omniauth.auth']
   end
+
+
 
 end

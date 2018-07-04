@@ -10,6 +10,7 @@ class BooksController < ApplicationController
     if @book.status != "Not Available"
      @userbook = find_userbook || @userbook = UserBook.new
 
+# Mehods in application_controller
       set_button_form_locals
 
     end
@@ -25,7 +26,7 @@ class BooksController < ApplicationController
       end
       redirect_to book_path(@book)
     else
-      render edit_admin_book_path(@book)
+      render book_path(@book)
     end
   end
 
