@@ -43,7 +43,6 @@ class UsersController < ApplicationController
     @books = @user.books
     binding.pry
     @userlibrary = UserBook.find_all {|userbook| userbook.user_id == @user.id}
-    @userlibrary
 
     binding.pry
   end
