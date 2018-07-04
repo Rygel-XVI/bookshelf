@@ -35,7 +35,7 @@ class UsersController < ApplicationController
       flash[:msg] = "#{@user.name} Not Updated"
       render 'edit'
     end
-    
+
   end
 
   def show
@@ -45,8 +45,13 @@ class UsersController < ApplicationController
 
   def destroy
     set_user
-    @user.destroy
-    redirect_to logout_path
+    if @user.destroy
+      flash[:msg] = "#{@user.name} Destroyed"
+      redirect_to logout_path
+    else
+      flash[:msg] = "User not deleted please notify admin"
+      redirect_to user_path(@user)
+    end
   end
 
   private
