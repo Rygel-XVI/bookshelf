@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
 
   def new
     if logged_in?
+      binding.pry
       redirect_to user_path(current_user)
     else
       @user = User.new
@@ -15,27 +16,32 @@ class SessionsController < ApplicationController
   end
 
   def create
+    # Find user to log in if not going through omniauth
     if params[:user]
       user = User.find_by(name: params[:user][:name])
       @user = user.try(:authenticate, params[:user][:password])
+      # if user doesn't exist redirect back to login
       if !@user
         flash[:msg] = "#{params[:user][:name]} not found or bad password."
         return redirect_to root_path
       end
     else
+      #If going through 3rd party find_or_create by uid
+      # Set global to true to determine password
+      User.set_omniauth
       @user = User.find_or_create_by(uid: auth_hash[:uid]) do |u|
         u.email = auth_hash[:info][:email]
         u.name = auth_hash[:info][:name]
         u.uid = auth_hash[:uid]
-        @called_omniauth = true
-        flash[:msg] = "Please contact admin to access password."
       end
     end
     log_in
+    password_msg
     redirect_to user_path(@user)
   end
 
   def destroy
+
     session.clear
     redirect_to root_path
   end
@@ -46,12 +52,12 @@ class SessionsController < ApplicationController
     session[:user_id] = @user.id
   end
 
-
-
   def auth_hash
     request.env['omniauth.auth']
   end
 
-
+  def password_msg
+    flash[:msg] = "Please contact admin to access password." if @user.password_digest == "newuser"
+  end
 
 end

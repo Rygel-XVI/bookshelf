@@ -27,13 +27,15 @@ class UsersController < ApplicationController
 
   def update
     set_user
-    if @user.authenticate(params[:old_password]) && @user.update(user_params)
+
+    if valid_pass? && user_updated?
       flash[:msg] = "#{@user.name} Update Successful"
       redirect_to user_path(@user)
     else
       flash[:msg] = "#{@user.name} Not Updated"
       render 'edit'
     end
+    
   end
 
   def show
@@ -55,6 +57,18 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def default_pass?
+    @user.password_digest == "newuser"
+  end
+
+  def valid_pass?
+    default_pass? || @user.authenticate(params[:old_password])
+  end
+
+  def user_updated?
+    @user.update(user_params)
   end
 
 end
