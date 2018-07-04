@@ -8,27 +8,21 @@ class BooksController < ApplicationController
   def show
     set_book
     if @book.status != "Not Available"
-     @userbook = UserBook.find_by(book_id: @book.id, user_id: current_user.id) || @userbook = UserBook.new
-     ##add default so you can change this to create
+     @userbook = find_userbook || @userbook = UserBook.new
 
-        if @book.status == "Checked Out" && @userbook.status == "Checked Out"
-            @button = "Return Book"
-            @global_status = "Available"
-            @user_status_choice = true
-
-        elsif @book.status == "Available"
-            @button = "Check Out"
-            @global_status = "Checked Out"
-            @user_status_choice = false
-
-        end
+      set_button_form_locals
 
     end
   end
 
   def update
     set_book
+    check_userbook_status = true if @book.status == "Checked Out"
     if @book.update(book_params)
+      if check_userbook_status
+        @userbook = find_userbook
+        @userbook.update(status: "Returned") if @userbook.status == "Checked Out"
+      end
       redirect_to book_path(@book)
     else
       render edit_admin_book_path(@book)
@@ -36,6 +30,12 @@ class BooksController < ApplicationController
   end
 
   private
+
+# Finds UserBook that matches logged in users library book
+# This is private because admin may need a different method and it is only used here
+  def find_userbook
+    UserBook.find_by(book_id: @book.id, user_id: current_user.id)
+  end
 
   def book_params
     params.require(:book).permit(:status, user_books_attributes: [

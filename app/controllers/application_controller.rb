@@ -56,14 +56,16 @@ class ApplicationController < ActionController::Base
     @author = Author.find(params[:id])
   end
 
-  # Stuff for checkout/return button
+
+
+########### Stuff for checkout/return button  ##########
 
   def can_return?
-    @Book.status == "Checked Out" && @user_books.status == "Checked Out"
+    @book.status == "Checked Out" && @userbook.status == "Checked Out"
   end
 
   def set_submit_message
-    can_return? ? "Check Out" : "Return Book"
+    can_return? ? "Return Book" : "Check Out"
   end
 
   def change_book_status
@@ -77,7 +79,7 @@ class ApplicationController < ActionController::Base
   def set_button_form_locals
     @button = set_submit_message
     @global_status = change_book_status
-    @user_status_choice = user_book_status_options
+    @user_status_choice = user_book_status_options?
   end
 
 end
