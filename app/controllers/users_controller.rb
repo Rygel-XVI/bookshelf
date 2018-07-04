@@ -41,6 +41,11 @@ class UsersController < ApplicationController
   def show
     set_user
     @books = @user.books
+
+    # @checked_out = @user.user_books.find_by(status: "Checked Out")
+    # @read = @user.user_books.find_by(status: "Read")
+    # @not_read = @user.user_books.find_by(status: "Not Read")
+
   end
 
   def destroy

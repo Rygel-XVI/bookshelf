@@ -4,7 +4,7 @@ class CreateBooks < ActiveRecord::Migration[5.2]
       t.string :title
       t.text :description
       t.integer :word_count
-      t.string :status
+      t.string :status, default: "Not Read"
       t.integer :author_id
 
       t.timestamps

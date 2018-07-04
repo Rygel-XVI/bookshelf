@@ -3,7 +3,6 @@ class SessionsController < ApplicationController
 
   def new
     if logged_in?
-      binding.pry
       redirect_to user_path(current_user)
     else
       @user = User.new
@@ -26,8 +25,7 @@ class SessionsController < ApplicationController
         return redirect_to root_path
       end
     else
-      #If going through 3rd party find_or_create by uid
-      # Set global to true to determine password
+      # If going through 3rd party find_or_create by uid
       User.set_omniauth
       @user = User.find_or_create_by(uid: auth_hash[:uid]) do |u|
         u.email = auth_hash[:info][:email]
@@ -41,7 +39,6 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-
     session.clear
     redirect_to root_path
   end
