@@ -41,11 +41,11 @@ class UsersController < ApplicationController
   def show
     set_user
     @books = @user.books
+    binding.pry
+    @userlibrary = UserBook.find_all {|userbook| userbook.user_id == @user.id}
+    @userlibrary
 
-    # @checked_out = @user.user_books.find_by(status: "Checked Out")
-    # @read = @user.user_books.find_by(status: "Read")
-    # @not_read = @user.user_books.find_by(status: "Not Read")
-
+    binding.pry
   end
 
   def destroy

@@ -4,9 +4,6 @@ class BooksController < ApplicationController
   def index
     @books = Book.all
 
-    # @checked_out = current_user.user_books.find_by(status: "Checked Out")
-    # @read = current_user.user_books.find_by(status: "Read")
-    # @not_read = current_user.user_books.find_by(status: "Not Read")
     @checked_out = current_user.user_books.find_all {|userbook| userbook.status == "Checked Out"}
     @checked_out.map! {|userbook| Book.find(userbook.book_id)}
 
@@ -16,8 +13,6 @@ class BooksController < ApplicationController
     @not_read = current_user.user_books.find_all {|userbook| userbook.status == "Not Read"}
     @not_read.map! {|userbook| Book.find(userbook.book_id)}
 
-
-    binding.pry
   end
 
   def show
