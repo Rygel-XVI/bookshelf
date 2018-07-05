@@ -1,41 +1,19 @@
 class BooksController < ApplicationController
   before_action :redirect_unless_logged_in
 
-  def index
-    # binding.pry
-    # @books = Book.all
-
+  def index  
     if params[:status] == "Checked Out"
       @books = Book.where(status: "Checked Out")
       @book_filter = "Checked Out"
-      # @books = Books.all.find_all {|book| book.status == "Checked Out"}
-      # @books.map! {|userbook| Book.find(userbook.book_id)}
+
     elsif params[:status] == "Available"
       @books = Book.where(status: "Available")
       @book_filter = "Available"
-      # @books = Books.all.find_all {|book| book.status == "Available"}
-      # @books.map! {|userbook| Book.find(userbook.book_id)}
+
     else
       @books = Book.all
       @book_filter = "All"
     end
-
-    # if params[:status] == "Checked Out"
-    #
-    #   @books = current_user.user_books.find_all {|userbook| userbook.status == "Checked Out"}
-    #   @books.map! {|userbook| Book.find(userbook.book_id)}
-    #   binding.pry
-    # elsif params[:status] ==  "Read"
-    #   @books = current_user.user_books.find_all {|userbook| userbook.status == "Read"}
-    #   @books.map! {|userbook| Book.find(userbook.book_id)}
-    #   binding.pry
-    # elsif params[:status] == "Not Read"
-    #   @books = current_user.user_books.find_all {|userbook| userbook.status == "Not Read"}
-    #   @books.map! {|userbook| Book.find(userbook.book_id)}
-    #   binding.pry
-    # else
-    #   @books = Book.all
-    # end
   end
 
   def show
