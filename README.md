@@ -2,8 +2,10 @@
 
 This is a project for my Flatiron School Rails Capstone. My motivation for it is to setup a classroom library system for my partner who has trouble keeping track of her books. It will be under continual development, adding various features over time.
 
-* To use, clone, bundle, rails db:migrate and use rails server. This must be used in a browsers incognito mode.
+* To use; clone, bundle, rails db:migrate and use rails server. This must be used in a browsers incognito mode.
   I recommend setting up your own initial admin account in the seed file.
+
+* If you find an issue with the code please file an issue with a pull request.
 
 * RUBY VERSION
    ruby 2.5.0p0
@@ -34,3 +36,5 @@ This is a project for my Flatiron School Rails Capstone. My motivation for it is
    tzinfo-data
    uglifier (>= 1.3.0)
    web-console (>= 3.3.0)
+
+   * This project has been licensed under the MIT open source license.

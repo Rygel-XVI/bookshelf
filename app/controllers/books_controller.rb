@@ -7,7 +7,7 @@ class BooksController < ApplicationController
       @book_filter = "Checked Out"
 
     elsif params[:status] == "Available"
-      @books = Book.where(status: "Available")
+      @books = Book.available
       @book_filter = "Available"
 
     else

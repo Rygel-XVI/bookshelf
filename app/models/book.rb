@@ -9,4 +9,8 @@ class Book < ApplicationRecord
   validates :author, :title, :word_count, :status, presence: true
   validates_inclusion_of :status, in: ["Checked Out", "Available", "Not Available"]
 
+  def self.available
+    where(status: "Available")
+  end
+
 end
