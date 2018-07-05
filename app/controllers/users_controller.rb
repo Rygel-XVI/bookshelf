@@ -41,10 +41,12 @@ class UsersController < ApplicationController
   def show
     set_user
     @books = @user.books
+    @read_userbooks = @user.user_books.where(status: "Read")
+    @read_books = @read.map {|userbook| Book.where(id: userbook.book_id)}
+    
     binding.pry
-    @userlibrary = UserBook.find_all {|userbook| userbook.user_id == @user.id}
 
-    binding.pry
+
   end
 
   def destroy
