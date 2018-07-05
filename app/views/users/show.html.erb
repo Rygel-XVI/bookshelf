@@ -2,16 +2,37 @@
 
 <br>
 
+<p>The average word count <%= @avg_word_count %></p>
+
+
+<p>Checked Out Books</p>
 <ul>
   <% if @user.admin %>
 
-    <% @books.each do |book| %>
+    <% @checked_out_books.each do |book| %>
       <li><%= link_to "#{book.title}", edit_admin_book_path(book) %> by: <%= link_to "#{book.author.name}", edit_admin_author_path(book.author) %></li>
     <% end %>
 
   <% else %>
 
-    <% @books.each do |book| %>
+    <% @checked_out_books.each do |book| %>
+      <li><%= link_to "#{book.title}", book_path(book) %> by: <%= link_to "#{book.author.name}", author_path(book.author) %></li>
+    <% end %>
+
+<% end %>
+</ul>
+
+<p>Read Books</p>
+<ul>
+  <% if @user.admin %>
+
+    <% @read_books.each do |book| %>
+      <li><%= link_to "#{book.title}", edit_admin_book_path(book) %> by: <%= link_to "#{book.author.name}", edit_admin_author_path(book.author) %></li>
+    <% end %>
+
+  <% else %>
+
+    <% @read_books.each do |book| %>
       <li><%= link_to "#{book.title}", book_path(book) %> by: <%= link_to "#{book.author.name}", author_path(book.author) %></li>
     <% end %>
 

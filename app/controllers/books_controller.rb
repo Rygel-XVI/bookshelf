@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
   before_action :redirect_unless_logged_in
 
-  def index  
+  def index
     if params[:status] == "Checked Out"
       @books = Book.where(status: "Checked Out")
       @book_filter = "Checked Out"
