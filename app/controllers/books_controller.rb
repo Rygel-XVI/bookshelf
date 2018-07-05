@@ -3,16 +3,16 @@ class BooksController < ApplicationController
 
   def index
     if params[:status] == "Checked Out"
-      @books = Book.where(status: "Checked Out")
-      @book_filter = "Checked Out"
+      @books = Book.checked_out
+      @filter_label = "Checked Out"
 
     elsif params[:status] == "Available"
       @books = Book.available
-      @book_filter = "Available"
+      @filter_labelr = "Available"
 
     else
       @books = Book.all
-      @book_filter = "All"
+      @filter_label = "All"
     end
   end
 

@@ -13,4 +13,8 @@ class Book < ApplicationRecord
     where(status: "Available")
   end
 
+  def self.checked_out
+    where(status: "Checked Out")
+  end
+
 end

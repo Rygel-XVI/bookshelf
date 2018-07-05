@@ -7,7 +7,7 @@
 
 <p>Checked Out Books</p>
 <ul>
-  <% if @user.admin %>
+  <% if is_admin? %>
 
     <% @checked_out_books.each do |book| %>
       <li><%= link_to "#{book.title}", edit_admin_book_path(book) %> by: <%= link_to "#{book.author.name}", edit_admin_author_path(book.author) %></li>
