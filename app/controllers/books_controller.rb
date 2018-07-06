@@ -4,16 +4,15 @@ class BooksController < ApplicationController
   def index
     if params[:status] == "Checked Out"
       @books = Book.checked_out
-      @filter_label = "Checked Out"
 
     elsif params[:status] == "Available"
       @books = Book.available
-      @filter_labelr = "Available"
 
     else
       @books = Book.all
-      @filter_label = "All"
     end
+
+    @filter_label = params[:status]
   end
 
   def show

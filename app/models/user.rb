@@ -28,8 +28,6 @@ class User < ApplicationRecord
   end
 
   def password_required?
-    # return false if @called_omniauth == true
-     # @called_omniauth == true ? false : true
     !$called_omniauth
   end
 
