@@ -31,6 +31,7 @@ class Admin::BooksController < ApplicationController
 
   def destroy
     set_book
+    binding.pry
     @book.destroy
     flash[:msg] = "#{@book.title} has been deleted."
     redirect_to books_path

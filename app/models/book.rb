@@ -7,7 +7,7 @@ class Book < ApplicationRecord
   accepts_nested_attributes_for :user_books, reject_if: :all_blank
 
   validates :author, :title, :word_count, :status, presence: true
-  validates_inclusion_of :status, in: ["Checked Out", "Available", "Not Available"]
+  validates_inclusion_of :status, in: ["Checked Out", "Available", "Not Available", "Graveyard"]
 
   def self.available
     where(status: "Available")
