@@ -27,7 +27,7 @@ class Book < ApplicationRecord
     where(status: "Graveyard")
   end
 
-###### Determining if it can be moved from library to user
+###### Determining if it can be moved between library and user
 
   def interactable?
     status == "Available" || status == "Checked Out"
