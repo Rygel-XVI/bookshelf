@@ -44,4 +44,19 @@ class Book < ApplicationRecord
     !user_books.detect {|ub| User.where(id: ub.user_id).exists? }
   end
 
+
+  # In the future can implement multiple filters here
+  def self.set_books_scope_to_status(status)
+    case status
+      when "Available"
+        Book.available
+      when "Not Available"
+        Book.not_available
+      when "Checked Out"
+        Book.checked_out
+      else
+        Book.all
+      end
+  end
+
 end

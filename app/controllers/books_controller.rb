@@ -2,16 +2,7 @@ class BooksController < ApplicationController
   before_action :redirect_unless_logged_in
 
   def index
-    if params[:status] == "Checked Out"
-      @books = Book.checked_out
-
-    elsif params[:status] == "Available"
-      @books = Book.available
-
-    else
-      @books = Book.all
-    end
-
+    params[:status] ? @books = Book.set_books_scope_to_status(params[:status]) : @books = Book.all
     @filter_label = params[:status]
   end
 
@@ -20,7 +11,7 @@ class BooksController < ApplicationController
     if @book.status != "Not Available"
      @userbook = find_userbook || @userbook = UserBook.new
 
-# Mehods in application_controller
+# Mehods in concerns/button_maker.rb
       set_button_form_locals
     end
   end
@@ -42,7 +33,7 @@ class BooksController < ApplicationController
   private
 
 # Finds UserBook that matches logged in users library book
-# This is private because admin may need a different method and it is only used here
+# This is private because admin version may need to be implemented and I will mix them up.
   def find_userbook
     UserBook.find_by(book_id: @book.id, user_id: current_user.id)
   end
