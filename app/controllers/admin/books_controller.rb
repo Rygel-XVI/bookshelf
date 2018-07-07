@@ -32,10 +32,6 @@ class Admin::BooksController < ApplicationController
     end
   end
 
-# Change method so it checks if it has any UserBooks and if those have actual Users associated before deleting
-
-####### TEST THIS OUT MORE
-
   def destroy
     set_book
     if !@book.can_destroy?

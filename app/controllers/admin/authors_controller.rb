@@ -31,9 +31,13 @@ class Admin::AuthorsController < ApplicationController
 
   def destroy
     set_author
-    @author.destroy
-    flash[:msg] = "#{@author.name} has been deleted."
-    redirect_to authors_path
+    if @author.destroy_if_empty
+      flash[:msg] = "#{@author.name} has been deleted."
+      redirect_to authors_path
+    else
+      flash[:msg] = "#Error #{@author.name} not deleted"
+      redirect_to edit_admin_author_path(@author)
+    end
   end
 
 
