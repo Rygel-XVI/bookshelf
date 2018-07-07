@@ -34,7 +34,7 @@ class Book < ApplicationRecord
   end
 
   def no_users?
-    !user_books.detect {|ub| User.find(ub.user_id)}
+    !user_books.detect {|ub| User.where(id: ub.user_id).exists? }
   end
 
 end
