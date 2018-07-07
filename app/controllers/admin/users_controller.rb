@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :redirect_unless_logged_in, :admin_required
-  
+
   def index
     set_user
     @users = User.all
@@ -24,10 +24,28 @@ class Admin::UsersController < ApplicationController
     end
   end
 
+  # Maybe destroy all associated UserBooks?
+
+    def destroy
+      set_target_user
+      if @target_user.destroy
+        @target_user.user_books.destroy_all
+        flash[:msg] = "#{@target_user.name} Destroyed"
+        redirect_to admin_users_path
+      else
+        flash[:msg] = "User not deleted please notify admin"
+        redirect_to admin_user_path(@target_user)
+      end
+    end
+
   private
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
+  end
+
+  def set_target_user
+    @target_user = User.find(params[:id])
   end
 
 end

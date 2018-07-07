@@ -50,21 +50,6 @@ class UsersController < ApplicationController
     @checked_out_userbooks = @user.user_books.where(status: "Checked Out")
     @checked_out_books = @checked_out_userbooks.map {|userbook| Book.find_by(id: userbook.book_id)}.uniq
 
-
-
-  end
-
-# Maybe destroy all associated UserBooks?
-
-  def destroy
-    set_user
-    if @user.destroy
-      flash[:msg] = "#{@user.name} Destroyed"
-      redirect_to logout_path
-    else
-      flash[:msg] = "User not deleted please notify admin"
-      redirect_to user_path(@user)
-    end
   end
 
   private

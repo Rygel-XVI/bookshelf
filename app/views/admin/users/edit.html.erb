@@ -17,4 +17,4 @@
  <%= f.submit %><br>
 <% end %>
 
-<%= link_to "Delete #{@user.name} Forever?", admin_user_destroy_path(@user) %>
+<%= link_to "Delete #{@target_user.name}?", admin_user_path(@target_user), action: :destroy, method: :delete, data: {confirm: "Really delete #{@target_user.name} forever?" } %>
