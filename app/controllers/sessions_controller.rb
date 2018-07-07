@@ -26,12 +26,14 @@ class SessionsController < ApplicationController
       end
     else
       # If going through 3rd party find_or_create by uid
-      User.set_omniauth
-      @user = User.find_or_create_by(uid: auth_hash[:uid]) do |u|
-        u.email = auth_hash[:info][:email]
-        u.name = auth_hash[:info][:name]
-        u.uid = auth_hash[:uid]
-      end
+      # User.set_omniauth
+      @user = User.find_or_create_by_omniauth(auth_hash)
+      binding.pry
+      # @user = User.find_or_create_by(uid: auth_hash[:uid]) do |u|
+      #   u.email = auth_hash[:info][:email]
+      #   u.name = auth_hash[:info][:name]
+      #   u.uid = auth_hash[:uid]
+      # end
     end
     log_in
     password_msg
