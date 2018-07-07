@@ -5,7 +5,6 @@ class Admin::BooksController < ApplicationController
     @book = Book.new
   end
 
-
 # Implement number functionality for duplicates
 
   def create

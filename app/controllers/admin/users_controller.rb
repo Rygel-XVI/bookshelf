@@ -9,12 +9,12 @@ class Admin::UsersController < ApplicationController
   end
 
   def edit
-    @target_user = User.find(params[:id])
+    set_target_user
     set_user
   end
 
   def update
-    @target_user = User.find(params[:id])
+    set_target_user
     if current_user.authenticate(params[:old_password]) && @target_user.update(user_params)
       flash[:msg] = "#{@target_user.name} Update Successful"
       redirect_to edit_admin_user_path(@target_user)
