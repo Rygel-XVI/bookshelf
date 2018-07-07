@@ -77,9 +77,11 @@ class ApplicationController < ActionController::Base
   end
 
   def set_button_form_locals
-    @button = set_submit_message
-    @global_status = change_book_status
-    @user_status_choice = user_book_status_options?
+    if @book.interactable?
+      @button = set_submit_message
+      @global_status = change_book_status
+      @user_status_choice = user_book_status_options?
+    end
   end
 
 end

@@ -27,6 +27,8 @@ class Admin::AuthorsController < ApplicationController
     end
   end
 
+# Add logic to check to make sure the author has no books associated with it
+
   def destroy
     set_author
     @author.destroy

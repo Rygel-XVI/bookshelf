@@ -17,4 +17,16 @@ class Book < ApplicationRecord
     where(status: "Checked Out")
   end
 
+  def self.not_available
+    where(status: "Not Available")
+  end
+
+  def self.graveyard
+    where(status: "Graveyard")
+  end
+
+  def interactable?
+    status == "Available" || status == "Checked Out"
+  end
+
 end

@@ -5,6 +5,9 @@ class Admin::BooksController < ApplicationController
     @book = Book.new
   end
 
+
+# Implement number functionality for duplicates
+
   def create
     @book = Book.new(book_params)
     if @book.save
