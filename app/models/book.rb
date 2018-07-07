@@ -9,6 +9,8 @@ class Book < ApplicationRecord
   validates :author, :title, :word_count, :status, presence: true
   validates_inclusion_of :status, in: ["Checked Out", "Available", "Not Available", "Graveyard"]
 
+############# Querying Status
+
   def self.available
     where(status: "Available")
   end
@@ -25,9 +27,14 @@ class Book < ApplicationRecord
     where(status: "Graveyard")
   end
 
+###### Determining if it can be moved from library to user
+
   def interactable?
     status == "Available" || status == "Checked Out"
   end
+
+
+############### Deleting Books
 
   def can_destroy?
     user_books.empty? || no_users?
