@@ -38,12 +38,12 @@ class Admin::BooksController < ApplicationController
 
   def destroy
     set_book
-    if !@book.user_books.empty?
-      @userbooks = @book.user_books
-      if @userbooks.detect {|ub| User.find(ub.user_id)}
-        @book.update(status: "Graveyard")
-        flash[:msg] = "Cannot delete go talk to Annette if you need to delete it. Status changed to Graveyard instead."
-      end
+    # if !@book.user_books.empty?
+    #   @userbooks = @book.user_books
+    #   if @userbooks.detect {|ub| User.find(ub.user_id)}
+    if !@book.can_destroy?
+      @book.update(status: "Graveyard")
+      flash[:msg] = "Cannot delete go talk to Annette if you need to delete it. Status changed to Graveyard instead."
     else
       @book.destroy
       flash[:msg] = "#{@book.title} has been deleted."

@@ -29,4 +29,14 @@ class Book < ApplicationRecord
     status == "Available" || status == "Checked Out"
   end
 
+  def can_destroy?
+    binding.pry
+    user_books.empty? || no_users?
+  end
+
+  def no_users?
+    binding.pry
+    !user_books.detect {|ub| User.find(ub.user_id)}
+  end
+
 end
