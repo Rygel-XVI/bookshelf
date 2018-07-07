@@ -30,12 +30,10 @@ class Book < ApplicationRecord
   end
 
   def can_destroy?
-    binding.pry
     user_books.empty? || no_users?
   end
 
   def no_users?
-    binding.pry
     !user_books.detect {|ub| User.find(ub.user_id)}
   end
 
