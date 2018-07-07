@@ -15,7 +15,8 @@ class Admin::UsersController < ApplicationController
 
   def update
     set_target_user
-    if current_user.authenticate(params[:old_password]) && @target_user.update(user_params)
+    set_user
+    if valid_pass? && user_updated?
       flash[:msg] = "#{@target_user.name} Update Successful"
       redirect_to edit_admin_user_path(@target_user)
     else
@@ -40,6 +41,18 @@ class Admin::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
+  end
+
+  def default_pass?
+    @user.password_digest == "newuser"
+  end
+
+  def valid_pass?
+    default_pass? || @user.authenticate(params[:old_password])
+  end
+
+  def user_updated?
+    @target_user.update(user_params)
   end
 
   def set_target_user
