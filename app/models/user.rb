@@ -3,13 +3,12 @@ class User < ApplicationRecord
   has_secure_password
   before_validation :no_password_omniauth
 
+# This is necessary to create users through the two paths properly
   validates_presence_of :password, :on => :create, :if => :password_required?
-  # validates_confirmation_of :password, :on => :create, :if =>:password_required?
-  validates :password, presence: true
 
-  # validates_confirmation_of :password, :if => :password_present?
-  # validates_presence_of :password, :on => :create, :unless => :uid
-  # validates_presence_of :password, :on => :create
+# These make it so updating user info runs the proper validations
+  validates_presence_of :password, on: :update
+  validates_confirmation_of :password, on: :update
 
   has_many :user_books
   has_many :books, through: :user_books
@@ -22,7 +21,11 @@ class User < ApplicationRecord
 ####### Methods and constant that interact with validations
   $called_omniauth = false
 
-  def self.set_omniauth
+  def self.not_omniauth_creation
+    $called_omniauth = false
+  end
+
+  def self.omniauth_creation
     $called_omniauth = true
   end
 
@@ -35,7 +38,7 @@ class User < ApplicationRecord
   end
 
   def self.find_or_create_by_omniauth(auth_hash)
-    User.set_omniauth
+    User.omniauth_creation
     where(uid: auth_hash[:uid]).first_or_create do |u|
       u.email = auth_hash[:info][:email]
       u.name = auth_hash[:info][:name]

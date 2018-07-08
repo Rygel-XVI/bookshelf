@@ -16,6 +16,7 @@ class Admin::UsersController < ApplicationController
   def update
     set_target_user
     set_user
+    # Hash::check("param1", "param2")
     if valid_pass? && user_updated?
       flash[:msg] = "#{@target_user.name} Update Successful"
       redirect_to edit_admin_user_path(@target_user)
