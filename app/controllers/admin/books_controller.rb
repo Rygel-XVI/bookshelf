@@ -5,8 +5,6 @@ class Admin::BooksController < ApplicationController
     @book = Book.new
   end
 
-# Implement number functionality for duplicates
-
   def create
     @book = Book.new(book_params)
     @book.number = Book.get_highest_number(@book.title)
@@ -18,6 +16,10 @@ class Admin::BooksController < ApplicationController
     end
   end
 
+
+# Add:
+# Assigning who a book is checked out to in the future
+# Returning a book that is checked out from any user
   def edit
     set_book
   end

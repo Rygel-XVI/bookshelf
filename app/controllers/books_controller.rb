@@ -1,6 +1,8 @@
 class BooksController < ApplicationController
   before_action :redirect_unless_logged_in
 
+
+# Add showing who has it checked out if checked out and is_admin?
   def index
     params[:status] ? @books = Book.set_books_scope_to_status(params[:status]) : @books = Book.all
     @books = Book.alphabetize(@books)
