@@ -9,23 +9,10 @@ class Book < ApplicationRecord
   validates :author, :title, :word_count, :status, :number, presence: true
   validates_inclusion_of :status, in: ["Checked Out", "Available", "Not Available", "Graveyard"]
 
-############# Querying Status
-
-  def self.available
-    where(status: "Available")
-  end
-
-  def self.checked_out
-    where(status: "Checked Out")
-  end
-
-  def self.not_available
-    where(status: "Not Available")
-  end
-
-  def self.graveyard
-    where(status: "Graveyard")
-  end
+ scope :available, -> { where(status: "Available") }
+ scope :checked_out, -> { where(status: "Checked Out") }
+ scope :not_available, -> { where(status: "Not Available") }
+ scope :graveyard, -> { where(status: "Graveyard") }
 
 # Return the number of books with their title and increments it by 1
   def self.get_highest_number(title)
