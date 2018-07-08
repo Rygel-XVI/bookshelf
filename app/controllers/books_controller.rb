@@ -3,8 +3,9 @@ class BooksController < ApplicationController
 
   def index
     params[:status] ? @books = Book.set_books_scope_to_status(params[:status]) : @books = Book.all
-    binding.pry
     @books = Book.alphabetize(@books)
+    @books = @books.uniq {|b| b.title }
+
     @filter_label = params[:status]
   end
 

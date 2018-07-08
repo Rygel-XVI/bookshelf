@@ -6,7 +6,7 @@ class Book < ApplicationRecord
   accepts_nested_attributes_for :author, reject_if: :all_blank
   accepts_nested_attributes_for :user_books, reject_if: :all_blank
 
-  validates :author, :title, :word_count, :status, presence: true
+  validates :author, :title, :word_count, :status, :number, presence: true
   validates_inclusion_of :status, in: ["Checked Out", "Available", "Not Available", "Graveyard"]
 
 ############# Querying Status
