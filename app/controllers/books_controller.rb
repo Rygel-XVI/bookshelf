@@ -4,19 +4,19 @@ class BooksController < ApplicationController
   def index
     params[:status] ? @books = Book.set_books_scope_to_status(params[:status]) : @books = Book.all
     @books = Book.alphabetize(@books)
-    @books = @books.uniq {|b| b.title }
-
-    @filter_label = params[:status]
+    @filter_label = params[:status] || "All"
+    @books = @books.uniq {|b| b.title } unless @filter_label ==  "All"
   end
 
   def show
     set_book
-    if @book.status != "Not Available"
+    if @book.interactable?
      @userbook = find_userbook || @userbook = UserBook.new
 
 # Mehods in concerns/button_maker.rb
       set_button_form_locals
     end
+
   end
 
   def update

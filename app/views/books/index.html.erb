@@ -12,6 +12,6 @@
 
 <% @books.each do |book| %>
   <li>
-    <p><%= "#{book.number}" %> - <%= link_to "#{book.title}", book_path(book) %> - <%= "#{book.status}" %>
+    <p><%= link_to "#{book.title}", book_path(book) %> <%= " - #{book.status}" if @filter_label == "All" %></p>
   </li>
 <% end %>
