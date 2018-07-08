@@ -50,7 +50,7 @@ class UsersController < ApplicationController
     @read_books = @read_userbooks.map {|userbook| Book.find_by(id: userbook.book_id)}
     @read_books.uniq! {|b| b.title}
 
-    @avg_word_count = avg_words(@read_books)
+    @avg_word_count = Book.avg_words(@read_books)
 
     @checked_out_userbooks = @user.user_books.where(status: "Checked Out")
     @checked_out_books = @checked_out_userbooks.map {|userbook| Book.find_by(id: userbook.book_id)}
@@ -77,16 +77,6 @@ class UsersController < ApplicationController
 
   def user_updated?
     @user.update(user_params)
-  end
-
-  def avg_words(books)
-    words = 0
-    if books.size > 0
-      books.map {|book| words += book.word_count}
-      words =  words/books.size
-    else
-      words
-    end
   end
 
 end

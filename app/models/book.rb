@@ -37,6 +37,16 @@ class Book < ApplicationRecord
     book_array.order(title: :asc)
   end
 
+  def self.avg_words(books)
+    words = 0
+    if books.size > 0
+      books.map {|book| words += book.word_count}
+      words =  words/books.size
+    else
+      words
+    end
+  end
+
   # In the future can implement multiple filters here
   def self.set_books_scope_to_status(status)
     case status
