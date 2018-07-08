@@ -8,8 +8,8 @@ class UserBook < ApplicationRecord
   scope :checked_out, -> { where(status: "Checked Out") }
   scope :read, -> { where(status: "Read") }
 
-  def get_books_by_user_id
-    Book.get_by_user_id(user_id)
+  def self.get_books_by_user_id(userbooks)
+    userbooks.map {|userbook| Book.get_by_user_id(userbook.book_id)}
   end
 
 end

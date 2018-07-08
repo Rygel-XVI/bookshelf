@@ -41,6 +41,8 @@ class UsersController < ApplicationController
 
   end
 
+
+# Add stats for Accelerated Reader level once add :ar_level to books
   def show
     set_user
     @checked_out_books = @user.get_checked_out_books

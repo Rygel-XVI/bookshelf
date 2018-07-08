@@ -58,11 +58,13 @@ class User < ApplicationRecord
     end
   end
 
+# Returns an array of Books that the user has interacted with.
+# Utilizes the :status and :user_id to find appropriate ones through UserBook
   def get_checked_out_books
-    get_user_books_by_status("Checked Out").map {|userbook| Book.get_by_user_id(userbook.book_id)}
+    UserBook.get_books_by_user_id(get_user_books_by_status("Checked Out"))
   end
 
   def get_read_books
-    get_user_books_by_status("Read").map {|userbook| Book.get_by_user_id(userbook.book_id)}
+    UserBook.get_books_by_user_id(get_user_books_by_status("Read"))
   end
 end
