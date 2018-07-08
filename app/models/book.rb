@@ -24,6 +24,10 @@ class Book < ApplicationRecord
     book_array.order(title: :asc)
   end
 
+  def self.get_by_user_id(id)
+    Book.find_by(id: id)
+  end
+
   # In the future can implement multiple filters here
   def self.set_books_scope_to_status(status)
     case status

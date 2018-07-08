@@ -43,18 +43,12 @@ class UsersController < ApplicationController
 
   def show
     set_user
-    @read = @user.user_books.where(status: "Read")
+    @checked_out_books = @user.get_checked_out_books
 
-    # Gets average word count fromo all read books
-    @read_userbooks = @user.user_books.where(status: "Read")
-    @read_books = @read_userbooks.map {|userbook| Book.find_by(id: userbook.book_id)}
+    @read_books = @user.get_read_books
     @read_books.uniq! {|b| b.title}
 
     @avg_word_count = Book.avg_words(@read_books)
-
-    @checked_out_userbooks = @user.user_books.where(status: "Checked Out")
-    @checked_out_books = @checked_out_userbooks.map {|userbook| Book.find_by(id: userbook.book_id)}
-
   end
 
   private

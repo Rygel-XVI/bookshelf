@@ -46,4 +46,23 @@ class User < ApplicationRecord
     end
   end
 
+# Returns the users user_books based on their status
+  def get_user_books_by_status(status)
+    case status
+    when "Read"
+      user_books.where(status: "Read")
+    when "Checked Out"
+      user_books.where(status: "Checked Out")
+    when "Not Read"
+      user_books.where(status: "Not Read")
+    end
+  end
+
+  def get_checked_out_books
+    get_user_books_by_status("Checked Out").map {|userbook| Book.get_by_user_id(userbook.book_id)}
+  end
+
+  def get_read_books
+    get_user_books_by_status("Read").map {|userbook| Book.get_by_user_id(userbook.book_id)}
+  end
 end
