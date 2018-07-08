@@ -11,6 +11,8 @@ class UsersController < ApplicationController
     if User.find_by(name: params[:user][:name])
       @user = User.new
       render new_user_path
+
+      # turn into elsif #somemethod to move logic out of controller?
     else
       @user = User.new(user_params)
       User.not_omniauth_creation
@@ -18,6 +20,7 @@ class UsersController < ApplicationController
         flash[:msg] = "#{@user.name} Creation Successful! Login to continue."
         return redirect_to login_path
       end
+
       render 'new'
     end
   end

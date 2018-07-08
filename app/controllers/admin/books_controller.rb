@@ -9,6 +9,7 @@ class Admin::BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
+    @book.number = Book.get_highest_number(@book.title)
     if @book.save
       flash[:msg] = "#{@book.title} Created"
       redirect_to book_path(@book)

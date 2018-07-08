@@ -19,12 +19,14 @@ class SessionsController < ApplicationController
     if params[:user]
       user = User.find_by(name: params[:user][:name])
       @user = user.try(:authenticate, params[:user][:password])
+
       # if user doesn't exist redirect back to login
       if !@user
         flash[:msg] = "#{params[:user][:name]} not found or bad password."
         return redirect_to root_path
       end
     else
+      
       # If going through 3rd party find_or_create by uid
       @user = User.find_or_create_by_omniauth(auth_hash)
     end

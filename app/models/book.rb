@@ -27,6 +27,26 @@ class Book < ApplicationRecord
     where(status: "Graveyard")
   end
 
+  # Return the number of books with their title and increments it by 1
+    def self.get_highest_number(title)
+      book = Book.where(title: title).order(number: :desc).first
+      book.number + 1
+    end
+
+  # In the future can implement multiple filters here
+  def self.set_books_scope_to_status(status)
+    case status
+      when "Available"
+        Book.available
+      when "Not Available"
+        Book.not_available
+      when "Checked Out"
+        Book.checked_out
+      else
+        Book.all
+      end
+  end
+
 ###### Determining if it can be moved between library and user
 
   def interactable?
@@ -44,19 +64,5 @@ class Book < ApplicationRecord
     !user_books.detect {|ub| User.where(id: ub.user_id).exists? }
   end
 
-
-  # In the future can implement multiple filters here
-  def self.set_books_scope_to_status(status)
-    case status
-      when "Available"
-        Book.available
-      when "Not Available"
-        Book.not_available
-      when "Checked Out"
-        Book.checked_out
-      else
-        Book.all
-      end
-  end
 
 end
