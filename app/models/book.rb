@@ -17,7 +17,7 @@ class Book < ApplicationRecord
 # Return the number of books with their title and increments it by 1
   def self.get_highest_number(title)
     book = Book.where(title: title).order(number: :desc).first
-    book.number + 1
+    !!book ? book.number + 1 : 1
   end
 
   def self.alphabetize(book_array)

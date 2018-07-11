@@ -7,9 +7,10 @@ class Admin::BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
+    binding.pry
     @book.number = Book.get_highest_number(@book.title)
     if @book.save
-      flash[:msg] = "#{@book.title} Created"
+      flash.now[:msg] = "#{@book.title} Created"
       redirect_to book_path(@book)
     else
       render 'new'
@@ -27,7 +28,7 @@ class Admin::BooksController < ApplicationController
   def update
     set_book
     if @book.update(book_params)
-      flash[:msg] = "#{@book.title} Update Successful!"
+      flash.now[:msg] = "#{@book.title} Update Successful!"
       redirect_to book_path(@book)
     else
       render 'edit'
@@ -38,10 +39,10 @@ class Admin::BooksController < ApplicationController
     set_book
     if !@book.can_destroy?
       @book.update(status: "Graveyard")
-      flash[:msg] = "Cannot delete go talk to Annette if you need to delete it. Status changed to Graveyard instead."
+      flash.now[:msg] = "Cannot delete go talk to Annette if you need to delete it. Status changed to Graveyard instead."
     else
       @book.destroy
-      flash[:msg] = "#{@book.title} has been deleted."
+      flash.now[:msg] = "#{@book.title} has been deleted."
     end
     redirect_to books_path
   end

@@ -17,7 +17,7 @@ class UsersController < ApplicationController
       @user = User.new(user_params)
       User.not_omniauth_creation
       if @user.save
-        flash[:msg] = "#{@user.name} Creation Successful! Login to continue."
+        flash.now[:msg] = "#{@user.name} Creation Successful! Login to continue."
         return redirect_to login_path
       end
 
@@ -32,10 +32,10 @@ class UsersController < ApplicationController
   def update
     set_user
     if valid_pass? && user_updated?
-      flash[:msg] = "#{@user.name} Update Successful"
+      flash.now[:msg] = "#{@user.name} Update Successful"
       redirect_to user_path(@user)
     else
-      flash[:msg] = "#{@user.name} Not Updated"
+      flash.now[:msg] = "#{@user.name} Not Updated"
       render 'edit'
     end
 
