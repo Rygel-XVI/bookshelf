@@ -2,16 +2,19 @@ class Admin::BooksController < ApplicationController
   before_action :redirect_unless_logged_in, :admin_required
 
   def new
-    @book = Book.new
+    # make accessible by json
+    book = Book.new
+    render json: book.to_json
   end
 
   def create
     @book = Book.new(book_params)
-    binding.pry
     @book.number = Book.get_highest_number(@book.title)
     if @book.save
       flash.now[:msg] = "#{@book.title} Created"
-      redirect_to book_path(@book)
+      # change redirect to instead return json and add it to the list
+      render json: @book.to_json(include: :author)
+      # redirect_to book_path(@book)
     else
       render 'new'
     end

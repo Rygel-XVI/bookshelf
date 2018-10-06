@@ -4,6 +4,8 @@ class BooksController < ApplicationController
 
 # Add showing who has it checked out if checked out and is_admin?
   def index
+    # binding.pry
+    @book = Book.new
     params[:status] ? @books = Book.set_books_scope_to_status(params[:status]) : @books = Book.all
     @books = Book.alphabetize(@books)
     @filter_label = params[:status] || "All"

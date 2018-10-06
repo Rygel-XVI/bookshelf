@@ -1,17 +1,44 @@
 <h2>Book List</h2>
 
+<% if is_admin? %>
+
+  <button class="create-btn">Create New Book</button>
+
+  <div class='create-book-form' style="display:none">
+    <h1>Create New Book</h1>
+
+    <%= render partial: '/layouts/form_errors', locals: {model: @book} %>
+
+    <%= form_for @book, :url => admin_books_path do |f| %>
+
+      <%= render partial: '/admin/books/books', locals: {f: f} %>
+      <hr>
+      <%= f.submit %>
+
+    <% end %>
+    <br>
+  </div>
+
+<% end %>
+
 <h3>Filter posts:</h3>
   <%= form_tag("/books", method: "get") do %>
     <%= select_tag "status", options_for_select(["Available", "Checked Out", "All"]), include_blank: false %>
     <%= submit_tag "Filter" %>
   <% end %>
-<ul>
 
-  <h4><%= "#{@filter_label} Books" %>
+<ul id="book-list">
+
+  <h4 id='filter' data-filter='<%=@filter_label%>'><%= "#{@filter_label} Books" %></h4>
     <br><hr><br>
 
 <% @books.each do |book| %>
   <li>
     <p><%= link_to "#{book.title}", book_path(book) %> <%= " - #{book.status}" if @filter_label == "All" %></p>
+    <div class="show-book" data-id="<%=book.id%>" ></div>
   </li>
 <% end %>
+
+</ul>
+
+<script type="text/javascript" src="book.js"></script>
