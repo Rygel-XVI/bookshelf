@@ -1,3 +1,5 @@
+
+
 <h2>Book List</h2>
 
 <% if is_admin? %>
@@ -16,6 +18,9 @@
       <%= f.submit %>
 
     <% end %>
+
+    <button id="clear-form">Clear Form</button>
+
     <br>
   </div>
 
@@ -33,7 +38,7 @@
     <br><hr><br>
 
 <% @books.each do |book| %>
-  <li>
+  <li data-id=<%= book.id %> >
     <p><%= link_to "#{book.title}", book_path(book) %> <%= " - #{book.status}" if @filter_label == "All" %></p>
     <div class="show-book" data-id="<%=book.id%>" ></div>
   </li>
@@ -41,4 +46,9 @@
 
 </ul>
 
-<script type="text/javascript" src="book.js"></script>
+<script id="book-template" type="text/x-handlebars-template">
+  {{#each this}}
+  <li data-id={{id}}>
+    <p><a href="/books/" + {{id}}>{{title}}</a> - {{status}}</p>
+  {{/each}}
+</script>

@@ -11,9 +11,9 @@
 // about supported directives.
 //
 
+//= require handlebars
 //= require jquery
 //= require jquery_ujs
-//= require rails-ujs
 //= require turbolinks
 //= require book
 //= require_tree .
