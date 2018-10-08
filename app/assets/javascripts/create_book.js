@@ -20,9 +20,9 @@ Book.prototype.addToList = function() {
 
     if (current_filter == "All") {
       $('ul#book-list li:last p').append(` - ${this.status}`)
-    }
+    };
 
-  }
+  };
 }
 
 
