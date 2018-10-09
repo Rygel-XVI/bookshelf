@@ -13,11 +13,21 @@
 
 <% else %>
 
-  <% @authors.each do |author| %>
-    <li>
-      <%= link_to "#{author_name(author)}", author_path(author) %>
-  </li>
-  <% end %>
+  <div class="authors"></div>
 
 <% end %>
 </ul>
+
+<script id="authors-template" type="text/x-handlebars-template">
+  {{#each this}}
+  <li data-id={{id}}>
+    <p>{{name}}</p>
+
+    <button id="display-books" data-id={{id}}>Show Books</button>
+
+    <button id="show-page" data-id={{id}}>Go to Page</button>
+
+    <div class="show"></div>
+  </li>
+  {{/each}}
+</script>

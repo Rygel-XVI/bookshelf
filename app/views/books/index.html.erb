@@ -37,6 +37,8 @@
   <h4 id='filter' data-filter='<%=@filter_label%>'><%= "#{@filter_label} Books" %></h4>
     <br><hr><br>
 
+<div class='.books'>
+
 <% @books.each do |book| %>
   <li data-id=<%= book.id %> >
     <p><%= link_to "#{book.title}", book_path(book) %> <%= " - #{book.status}" if @filter_label == "All" %></p>
@@ -44,11 +46,11 @@
   </li>
 <% end %>
 
+</div>
+
 </ul>
 
 <script id="book-template" type="text/x-handlebars-template">
-  {{#each this}}
   <li data-id={{id}}>
-    <p><a href="/books/" + {{id}}>{{title}}</a> - {{status}}</p>
-  {{/each}}
+    <p><a href="/books/" + {{id}}>{{title}}</a></p>
 </script>

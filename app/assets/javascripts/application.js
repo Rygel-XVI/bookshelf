@@ -16,4 +16,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require create_book
+//= require authors
 //= require_tree .

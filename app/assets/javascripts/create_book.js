@@ -11,17 +11,15 @@ function Book(obj) {
 Book.prototype.addToList = function() {
   const current_filter = $('#filter').data('filter')  //gives filter name
   if (this.status == current_filter || current_filter == "All") {
-    // add to list
-    $('ul#book-list').append(document.createElement("li"));
-    $('ul#book-list li:last').attr("data-id", this.id);
-    $('ul#book-list li:last').append(document.createElement("p"))
 
-    $('ul#book-list li:last p').html(`<a href='/books/${this.id}'>${this.title}</a>`)
+    var bookTemplate = Handlebars.compile(document.getElementById('book-template').innerHTML)
+    var $bookUl = $('#book-list')
+
+    $bookUl.append(bookTemplate(this))
 
     if (current_filter == "All") {
-      $('ul#book-list li:last p').append(` - ${this.status}`)
+      $('#book-list li:last p').append(` - ${this.status}`)
     };
-
   };
 }
 
