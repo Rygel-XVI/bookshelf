@@ -11,15 +11,15 @@ function Book(obj) {
 Book.prototype.addToList = function() {
   const current_filter = $('#filter').data('filter')  //gives filter name
   if (this.status == current_filter || current_filter == "All") {
-
     var bookTemplate = Handlebars.compile(document.getElementById('book-template').innerHTML)
-    var $bookUl = $('#book-list')
 
+    var $bookUl = $('#book-list')
     $bookUl.append(bookTemplate(this))
 
     if (current_filter == "All") {
       $('#book-list li:last p').append(` - ${this.status}`)
     };
+
   };
 }
 

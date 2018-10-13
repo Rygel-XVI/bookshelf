@@ -11,10 +11,8 @@
 // about supported directives.
 //
 
+
 //= require handlebars
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require create_book
-//= require authors
-//= require_tree .
