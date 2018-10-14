@@ -7,9 +7,9 @@ function getAuthors() {
 
 function addAuthors(json) {
   var authorsTemplate = Handlebars.compile(document.getElementById('authors-template').innerHTML)
-  var authorsDiv = $('.authors')
-
-  authorsDiv.append(authorsTemplate(json))
+  var $authorsDiv = $('.authors')
+  $authorsDiv.empty();
+  $authorsDiv.append(authorsTemplate(json))
   addListeners();
 }
 
