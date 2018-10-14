@@ -24,12 +24,25 @@ function addListeners() {
 
 function getBooks(target) {
   var id = target.dataset['id'] //id
-  fetch(`/author/${id}/book_data.json`)
-  .then(response => response.json())
-  .then(json => function(json) {
-    debugger;
-    console.log(json)
-  });
+  $.get(`/author/${id}/book_data.json`, function(data) {
+    $ul = $(`.show-books[data-author-id=${id}]`)
+    if (data.length > 0) {
+      //make template and append to ul as li
+    } else {
+      $ul.append("No Books Available")
+    }
+  })
+}
+
+function showBooks(json) {
+  debugger;
+  $ul = $(`.show-books[data-author-id=${id}]`)
+  debugger;
+  if (json.length > 0) {
+
+  } else {
+    $ul.append("No Books Available")
+  }
 }
 
 $(function() {
