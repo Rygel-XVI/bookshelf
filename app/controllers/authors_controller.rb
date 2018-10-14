@@ -18,10 +18,10 @@ class AuthorsController < ApplicationController
     end
   end
 
-  def author_book_data
+  def book_data
     set_author
     @books = @author.books.uniq
-    render @books.json
+    render json: @books.to_json(only: [:title, :description, :status, :word_count])
   end
 
 end

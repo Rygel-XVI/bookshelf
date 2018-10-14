@@ -1,5 +1,4 @@
 
-
 <h2>Book List</h2>
 
 <% if is_admin? %>
@@ -54,3 +53,5 @@
   <li data-id={{id}}>
     <p><a href="/books/" + {{id}}>{{title}}</a></p>
 </script>
+
+<%=javascript_include_tag 'create_book' %>

@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get '/sessions/login' => 'sessions#new'
   get '/auth/failure' => 'sessions#fail'
 
+  get '/author/:id/book_data' => 'authors#book_data'
+
   resources :users, except: [:index, :destroy]
 
   resources :books, :authors, only: [:index, :show, :update]
