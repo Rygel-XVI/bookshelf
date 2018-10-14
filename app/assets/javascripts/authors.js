@@ -26,13 +26,17 @@ function getBooks(target) {
   var id = target.dataset['id'] //id
   $.get(`/author/${id}/book_data.json`, function(data) {
     $ul = $(`.show-books[data-author-id=${id}]`)
+    $ul.empty()
     if (data.length > 0) {
-      //make template and append to ul as li
+      // clear area before adding. make a hide section. add link to book page.
+      var bookTemplate = Handlebars.compile(document.getElementById('book-details-template').innerHTML)
+      $ul.append(bookTemplate(data))
     } else {
       $ul.append("No Books Available")
-    }
-  })
+    };
+  });
 }
+
 
 function showBooks(json) {
   debugger;
