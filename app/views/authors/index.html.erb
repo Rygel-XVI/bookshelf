@@ -22,9 +22,8 @@
 <script id="authors-template" type="text/x-handlebars-template">
   {{#each this}}
   <li data-id={{id}}>
-    <p>{{name}}</p>
-    <button id="display-books" data-id={{id}}>Show Books</button>
-    <button id="show-page" data-id={{id}}>Go to Page</button>
+    <p><a href="/authors/{{id}}">{{name}}</a></p>
+    <button class="display-books" data-id={{id}}>Show Books</button>
     <ul class="show-books" data-author-id={{id}}></ul>
   </li>
   {{/each}}
@@ -33,8 +32,9 @@
 <script id="book-details-template" type="text/x-handlebars-template">
   {{#each this}}
   <li>
-  <h4>{{title}} - Status: {{status}}</h4>
-  <p>{{description}}</p>
+    <h4><a href="/books/{{{id}}}">{{title}}</a> - Status: {{status}}</h4>
+    <button class="show-description" data-id={{id}}>Show Description</button>
+    <p class="show-desc-paragraph" data-id={{id}} style="display:none">{{description}}</p>
 </li>
 {{/each}}
 </script>

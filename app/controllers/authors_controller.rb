@@ -11,7 +11,10 @@ class AuthorsController < ApplicationController
 
   def show
     set_author
-    @books = @author.books.uniq
+    # make this uniq by name
+    # @books.uniq {|b| b.title }
+    @books = @author.books.uniq {|b| b.title }
+    binding.pry
     respond_to do |format|
       format.html { render :show }
       format.json { render json: @books.to_json(only: [:title, :description, :status, :word_count])}
@@ -21,7 +24,7 @@ class AuthorsController < ApplicationController
   def book_data
     set_author
     @books = @author.books.uniq
-    render json: @books.to_json(only: [:title, :description, :status, :word_count])
+    render json: @books.to_json(only: [:id, :title, :description, :status, :word_count])
   end
 
 end
