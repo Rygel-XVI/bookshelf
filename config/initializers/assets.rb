@@ -14,6 +14,4 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 Rails.application.config.assets.precompile += %w( authors.js )
 Rails.application.config.assets.precompile += %w( create_book.js )
-
-# <script type='text/javascript' src='authors.js'></script>
-# <% javascript_include_tag "authors.js" %>
+Rails.application.config.assets.precompile += %w( show_author.js )

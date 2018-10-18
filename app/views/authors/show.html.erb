@@ -1,5 +1,7 @@
-<h1><%= @author.name %></h1>
-<%= link_to "Edit this author", edit_admin_author_path(@author) if is_admin? %>
+<div id="author-header" data-id='<%= @author.id %>'></div>
+<div id="edit-author" data-admin='<%= is_admin? %>'></div>
+
+
 
 <br>
 
@@ -13,14 +15,23 @@
   <% end %>
   </ul>
 
-<% else %>
+  <% else %>
 
-  <ul>
-  <% @books.each do |book| %>
-    <li>
-      <p><%= link_to "#{book.title}", book_path(book) %></p>
-    </li>
-  <% end %>
-  </ul>
+  <ul class='show-books'></ul>
+
 
 <% end %>
+
+
+<script id="book-template" type="text/x-handlebars-template">
+
+  {{#each this}}
+  <li>
+    <a class="book" data-id={{id}} href="/books/{{{id}}}">{{title}}</a>
+  </li>
+  <br>
+  {{/each}}
+
+</script>
+
+<%= javascript_include_tag 'show_author' %>

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/auth/failure' => 'sessions#fail'
 
   get '/author/:id/book_data' => 'authors#book_data'
+  get '/author/:id/author_data' => 'authors#author_data'
 
   resources :users, except: [:index, :destroy]
 

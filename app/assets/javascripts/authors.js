@@ -38,10 +38,10 @@ function getBooks(target) {
       $ul.append("No Books Available")
     };
   });
+
   $(`button.display-books[data-id=${id}]`).on('click', function() {
-    // debugger;
     $(`ul.show-books[data-author-id=${id}]`).toggle();
-  })
+  });
 
 }
 
@@ -50,10 +50,6 @@ function setBookListener($buttons) {
     var id = e.target.dataset["id"];
     $(`.show-desc-paragraph[data-id=${id}]`).toggle();
   })
-}
-
-function showBook(target) {
-  debugger;
 }
 
 $(function() {
