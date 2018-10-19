@@ -1,9 +1,13 @@
+
+// gets the json for the author header and appends it to the DOM
 function getAuthor(){
   $('#author-header').empty()
-  var id = $('#author-header').data("id")
+  var id = $('#author-header').data("id") //author-id
   $.get(`/author/${id}/author_data`, function(json){
     $('#author-header').append(`<h1>${json["name"]}</h1>`)
   })
+
+  // if the user is an admin then add an edit link
   if ($('#edit-author').data("admin")) {
     $('#edit-author').append(`<a href="/admin/authors/${id}/edit">Edit This Author</a>`)
   };
