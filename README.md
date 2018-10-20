@@ -1,9 +1,9 @@
 # README
 
-This is a project for my Flatiron School Rails Capstone. My motivation for it is to setup a classroom library system for my partner who has trouble keeping track of her books. It will be under continual development, adding various features over time.
+This is a project for my Flatiron School Rails Capstone. My motivation for it is to setup a classroom library system for my partner who has trouble keeping track of her books. This will be under continual development, adding various features over time. It currently has a javascript/ajax front-end on the ajax branch which will be re-done to utilize React and an automatic data-base backup.
 
 * To use; clone, bundle, rails db:migrate and use rails server. This must be used in a browsers incognito mode.
-  I recommend setting up your own initial admin account in the seed file.
+  I recommend setting up your own initial admin account in the seed file. New users will automatically be assigned the password 'newuser'
 
 * If you find an issue with the code please file an issue with a pull request.
 
