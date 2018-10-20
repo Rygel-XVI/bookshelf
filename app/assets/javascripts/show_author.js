@@ -13,8 +13,9 @@ function getAuthor(){
   };
 }
 
+// Obtain and append the author's books to the DOM
 function getBooks(){
-  var id = $('#author-header').data("id")
+  var id = $('#author-header').data("id") //author's id
   $.get(`/author/${id}/book_data.json`, function(data) {
     $ul = $(`.show-books`)
     $ul.empty()
@@ -35,19 +36,3 @@ $(function() {
   getAuthor();
   getBooks();
 })
-
-
-// <h1><%= @author.name %></h1>
-// <%= link_to "Edit this author", edit_admin_author_path(@author) if is_admin? %>
-//
-// <% else %>
-//
-//   <div class="show-books"></div>
-//
-//   <ul>
-//   <% @books.each do |book| %>
-//     <li>
-//       <p><%= link_to "#{book.title}", book_path(book) %></p>
-//     </li>
-//   <% end %>
-//   </ul>
